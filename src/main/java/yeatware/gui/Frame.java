@@ -23,14 +23,14 @@ public class Frame {
     }
 
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        int bgColor = guiScreen.isSelected(category) ?
+                new Color(38, 37, 37, 255).getRGB() : Color.BLACK.getRGB();
 
-        context.fill(x, y, x + width, y + height, guiScreen.isSelected(category) ?
-                new Color(38, 37, 37, 255).getRGB() : Color.BLACK.getRGB());
+        context.fill(x, y, x + width, y + height, bgColor);
 
-
-        context.drawTextWithShadow(mc.textRenderer, category.name, x + (width - mc.textRenderer.getWidth(category.name)) / 2, y + (height - mc.textRenderer.fontHeight) / 2,
-                guiScreen.isSelected(category) ? -1 : new Color(110, 106, 106, 255).getRGB()
-        );
+        context.drawTextWithShadow(mc.textRenderer, category.name, x + (width - mc.textRenderer.getWidth(category.name)) / 2,
+                y + (height - mc.textRenderer.fontHeight) / 2,
+                guiScreen.isSelected(category) ? -1 : new Color(110, 106, 106, 255).getRGB());
 
         int outlineColor = new Color(61, 60, 60, 255).getRGB();
 
@@ -40,7 +40,6 @@ public class Frame {
         }
 
         context.fill(x, y, x + width, y + 1, outlineColor);
-
     }
 
     public void mouseReleased(double mouseX, double mouseY, int button) {
