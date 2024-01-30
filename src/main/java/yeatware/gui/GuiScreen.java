@@ -12,12 +12,14 @@ import java.util.List;
 import static yeatware.Main.mc;
 
 public class GuiScreen extends Screen {
+    public Category currentCategory;
     List<Frame> frames;
     int[] box;
 
     public GuiScreen() {
         super(Text.of("GuiScreen"));
         frames = new ArrayList<>();
+        currentCategory = Category.COMBAT;
 
         int frameWidth = 50;
         int totalFramesWidth = Category.values().length * frameWidth;
@@ -25,16 +27,15 @@ public class GuiScreen extends Screen {
         int startX = (mc.getWindow().getScaledWidth() - totalFramesWidth) / 2;
 
         for (Category category : Category.values()) {
-            frames.add(new Frame(category, frameWidth, 15, startX, 20));
+            frames.add(new Frame(this, category, frameWidth, 15, startX, 20));
             startX += frameWidth;
         }
 
-        /*
-         * 0 x
+        /* 0 x
          * 1 y
          * 2 width
-         * 3 height
-         * */
+         * 3 height */
+
         box = new int[]{(mc.getWindow().getScaledWidth() - totalFramesWidth) / 2, 20 + 15, totalFramesWidth, 100};
     }
 
@@ -48,7 +49,7 @@ public class GuiScreen extends Screen {
 
         // genius coding below <3
 
-        context.fill(box[0], box[1], box[0] + box[2], box[1] + box[3], new Color(24, 24, 24,255).getRGB());
+        context.fill(box[0], box[1], box[0] + box[2], box[1] + box[3], new Color(24, 24, 24, 255).getRGB());
 
         context.fill(box[0] - 1, box[1] + box[3], box[0] + box[2] + 1, box[1] + box[3] + 1, outlineColor);
         context.fill(box[0] - 1, box[1], box[0], box[1] + box[3], outlineColor);
@@ -56,10 +57,23 @@ public class GuiScreen extends Screen {
 
         frames.forEach(frame -> {
             int lineY = frame.y + frame.height;
-            context.fill(frame.x, lineY, frame.x + frame.width, lineY + 1, new Color(45, 79, 147, 255).getRGB());
+            context.fill(frame.x, lineY, frame.x + frame.width, lineY + 2, new Color(45, 79, 147, 255).getRGB());
         });
 
         super.render(context, mouseX, mouseY, delta);
     }
 
+    @Override
+    public boolean mouseReleased(double mouseX, double mouseY, int button) {
+        frames.forEach(frame -> frame.mouseReleased(mouseX, mouseY, button));
+        return super.mouseReleased(mouseX, mouseY, button);
+    }
+
+    public void setCurrentCategory(Category category) {
+        currentCategory = category;
+    }
+
+    public boolean isSelected(Category category) {
+        return currentCategory == category;
+    }
 }

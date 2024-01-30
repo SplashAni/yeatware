@@ -8,11 +8,13 @@ import java.awt.*;
 import static yeatware.Main.mc;
 
 public class Frame {
+    GuiScreen guiScreen;
     Category category;
     int width, height;
     int x, y;
 
-    public Frame(Category category, int width, int height, int x, int y) {
+    public Frame(GuiScreen guiScreen, Category category, int width, int height, int x, int y) {
+        this.guiScreen = guiScreen;
         this.category = category;
         this.width = width;
         this.height = height;
@@ -22,11 +24,12 @@ public class Frame {
 
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
 
-        context.fill(x, y, x + width, y + height, Color.BLACK.getRGB());
+        context.fill(x, y, x + width, y + height, guiScreen.isSelected(category) ?
+                new Color(38, 37, 37, 255).getRGB() : Color.BLACK.getRGB());
 
 
         context.drawTextWithShadow(mc.textRenderer, category.name, x + (width - mc.textRenderer.getWidth(category.name)) / 2, y + (height - mc.textRenderer.fontHeight) / 2,
-                new Color(110, 106, 106, 255).getRGB()
+                guiScreen.isSelected(category) ? -1 : new Color(110, 106, 106, 255).getRGB()
         );
 
         int outlineColor = new Color(61, 60, 60, 255).getRGB();
@@ -38,6 +41,16 @@ public class Frame {
 
         context.fill(x, y, x + width, y + 1, outlineColor);
 
+    }
+
+    public void mouseReleased(double mouseX, double mouseY, int button) {
+        if (isHovered((int) mouseX, (int) mouseY) && button == 0) {
+            guiScreen.setCurrentCategory(category);
+        }
+    }
+
+    private boolean isHovered(int mouseX, int mouseY) {
+        return mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height;
     }
 
 
