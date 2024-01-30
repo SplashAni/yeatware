@@ -16,7 +16,7 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-          "yeatware.Yeat"
+			"yeatware.Main"
 		]
 	},
 	"mixins": [

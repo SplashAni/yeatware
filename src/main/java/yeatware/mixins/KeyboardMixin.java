@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import yeatware.gui.GuiScreen;
 
-import static yeatware.Yeat.mc;
+import static yeatware.Main.mc;
 
 @Mixin(Keyboard.class)
 public class KeyboardMixin {

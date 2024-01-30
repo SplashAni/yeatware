@@ -6,7 +6,7 @@ import net.minecraft.client.MinecraftClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Yeat implements ModInitializer {
+public class Main implements ModInitializer {
 
     public static final Logger LOGGER = LoggerFactory.getLogger("yeat");
 	public static MinecraftClient mc = MinecraftClient.getInstance();
