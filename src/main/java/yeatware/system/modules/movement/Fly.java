@@ -1,4 +1,4 @@
-package yeatware.system.modules;
+package yeatware.system.modules.movement;
 
 import yeatware.system.Category;
 import yeatware.system.Module;

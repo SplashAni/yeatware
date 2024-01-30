@@ -3,6 +3,8 @@
 	"package": "yeatware.mixins",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
+		"EntityMixin",
+		"LimbAnimatorMixin",
 		"MinecraftClientMixin"
 	],
 	"injectors": {

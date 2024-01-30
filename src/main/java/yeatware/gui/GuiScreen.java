@@ -24,9 +24,9 @@ public class GuiScreen extends Screen {
 
         frames = new ArrayList<>();
         buttons = new ArrayList<>();
-        currentCategory = Category.COMBAT;
 
-        int frameWidth = 50;
+
+        int frameWidth = 55;
         int totalFramesWidth = Category.values().length * frameWidth;
 
         int startX = (mc.getWindow().getScaledWidth() - totalFramesWidth) / 2;
@@ -43,6 +43,8 @@ public class GuiScreen extends Screen {
 
         box = new int[]{(mc.getWindow().getScaledWidth() - totalFramesWidth) / 2, 20 + 15, totalFramesWidth, 100};
     }
+
+
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
@@ -87,8 +89,8 @@ public class GuiScreen extends Screen {
         buttons.clear();
 
         int offset = 0;
-        for (Module module : ModuleManager.getInstance().getCategoryModules(category)) {
-            buttons.add(new Button(module, box[0] - 2, box[1] + offset + 1));
+        for (Module module : ModuleManager.get().getCategoryModules(category)) {
+            buttons.add(new Button(module, box[0] - 2, box[1] + offset + 2));
             offset += mc.textRenderer.fontHeight + 2;
         }
     }

@@ -1,21 +1,22 @@
 package yeatware;
 
 import net.fabricmc.api.ModInitializer;
-
 import net.minecraft.client.MinecraftClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import yeatware.system.Category;
 import yeatware.system.ModuleManager;
 
 public class Main implements ModInitializer {
 
     public static final Logger LOGGER = LoggerFactory.getLogger("yeat");
-	public static MinecraftClient mc = MinecraftClient.getInstance();
-	@Override
-	public void onInitialize() {
+    public static MinecraftClient mc = MinecraftClient.getInstance();
 
-		ModuleManager.getInstance().init();
+    @Override
+    public void onInitialize() {
 
-		LOGGER.info("splash x bennyx x yeat!");
-	}
+        ModuleManager.get().init();
+
+        LOGGER.info("splash x bennyx x yeat!");
+    }
 }
