@@ -5,6 +5,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import yeatware.system.ModuleManager;
 import yeatware.system.modules.render.NoLimbInterp;
 
@@ -12,6 +13,10 @@ import yeatware.system.modules.render.NoLimbInterp;
 public class LimbAnimatorMixin {
     @Inject(method = "updateLimbs", at = @At("HEAD"), cancellable = true)
     public void updateLimbs(float speed, float multiplier, CallbackInfo ci) {
-        if (ModuleManager.get().getModule(NoLimbInterp.class).isActive()) ci.cancel();
+        //if (ModuleManager.get().getModule(NoLimbInterp.class).isActive()) ci.cancel();
+    }
+    @Inject(method = "isLimbMoving",at = @At("HEAD"))
+    public void no(CallbackInfoReturnable<Boolean> cir){
+        cir.setReturnValue(false);
     }
 }

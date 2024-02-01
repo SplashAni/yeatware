@@ -6,6 +6,7 @@ import yeatware.system.modules.render.ForceSneak;
 import yeatware.system.modules.render.NoLimbInterp;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class ModuleManager {
@@ -24,11 +25,12 @@ public class ModuleManager {
     }
 
     public void init() {
-        modules.add(new Fly());
-        modules.add(new Sprint());
-
+        add(new Sprint());
+        add(new Fly());
         add(new ForceSneak());
         add(new NoLimbInterp());
+
+        modules.sort(Comparator.comparing(module -> module.getName().toLowerCase()));
     }
 
     public void add(Module module) {

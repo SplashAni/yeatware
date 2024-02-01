@@ -11,6 +11,7 @@ public class Main implements ModInitializer {
 
     public static final Logger LOGGER = LoggerFactory.getLogger("yeat");
     public static MinecraftClient mc = MinecraftClient.getInstance();
+    
 
     @Override
     public void onInitialize() {

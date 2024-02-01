@@ -26,7 +26,7 @@ public class GuiScreen extends Screen {
         buttons = new ArrayList<>();
 
 
-        int frameWidth = 55;
+        int frameWidth = 80;
         int totalFramesWidth = Category.values().length * frameWidth;
 
         int startX = (mc.getWindow().getScaledWidth() - totalFramesWidth) / 2;
@@ -41,18 +41,18 @@ public class GuiScreen extends Screen {
          * 2 width
          * 3 height */
 
-        box = new int[]{(mc.getWindow().getScaledWidth() - totalFramesWidth) / 2, 20 + 15, totalFramesWidth, 100};
+        box = new int[]{(mc.getWindow().getScaledWidth() - totalFramesWidth) / 2, 20 + 15, totalFramesWidth, 150};
     }
 
 
+    @Override
+    public void close() {
+        super.close();
+    }
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-
-        frames.forEach(frame -> frame.render(context, mouseX, mouseY, delta));
-
         int outlineColor = new Color(61, 60, 60, 255).getRGB();
-
 
         context.fill(box[0], box[1], box[0] + box[2], box[1] + box[3], new Color(24, 24, 24, 255).getRGB());
 
@@ -65,12 +65,25 @@ public class GuiScreen extends Screen {
             context.fill(frame.x, lineY, frame.x + frame.width, lineY + 2, new Color(45, 79, 147, 255).getRGB());
         });
 
+
+        // ik im gonna forget this ok so , this renders the line that goes down, and the background next to the line
+        int lineOffset = 65;
+
+        int horizontalX = box[0] + lineOffset + 3;
+        context.fill(horizontalX + 1, box[1] + 2, box[0] + box[2], box[1] + box[3], new Color(44, 42, 42, 255).getRGB());
+
+        int verticalX = box[0] + lineOffset + 3;
+        context.fill(verticalX, box[1], verticalX + 2, box[1] + box[3], new Color(45, 79, 147, 255).getRGB());
+
+
+        frames.forEach(frame -> frame.render(context, mouseX, mouseY, delta));
+
         if (buttons.isEmpty()) return;
         buttons.forEach(button -> button.render(context, mouseX, mouseY, delta));
 
-
         super.render(context, mouseX, mouseY, delta);
     }
+
 
     @Override
     public boolean mouseReleased(double mouseX, double mouseY, int button) {
@@ -89,6 +102,7 @@ public class GuiScreen extends Screen {
         buttons.clear();
 
         int offset = 0;
+
         for (Module module : ModuleManager.get().getCategoryModules(category)) {
             buttons.add(new Button(module, box[0] - 2, box[1] + offset + 2));
             offset += mc.textRenderer.fontHeight + 2;

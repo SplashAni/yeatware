@@ -1,6 +1,8 @@
 package yeatware.gui;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.util.Identifier;
 import yeatware.system.Category;
 
 import java.awt.*;
@@ -23,6 +25,7 @@ public class Frame {
     }
 
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+
         int bgColor = guiScreen.isSelected(category) ?
                 new Color(38, 37, 37, 255).getRGB() : Color.BLACK.getRGB();
 
@@ -40,7 +43,24 @@ public class Frame {
         }
 
         context.fill(x, y, x + width, y + 1, outlineColor);
+        //drawIcon(context);
     }
+
+    public void drawIcon(DrawContext context) {
+        Identifier path = new Identifier("yeat", "/icons/" + category.name.toLowerCase() + ".png");
+        Color color = Color.WHITE;
+        int scale = height - 3;
+
+        RenderSystem.setShaderColor(color.getRed() / 255f, color.getGreen() / 255f, color.getBlue() / 255f, color.getAlpha() / 255f);
+
+        RenderSystem.setShaderTexture(0, path);
+
+        context.drawTexture(path, x + width - scale - 2, y + 2, 0, 0, scale, scale, scale, scale);
+
+        RenderSystem.setShaderColor(1, 1, 1, 1);
+    }
+
+
 
     public void mouseReleased(double mouseX, double mouseY, int button) {
         if (isHovered((int) mouseX, (int) mouseY) && button == 0) {
