@@ -30,10 +30,11 @@ public class Button {
                 if (module.isActive()) module.onActivate();
                 else module.onDeactivate();
             }
+            if (button == 1) {
+                guiScreen.setModule(module);
+            }
         }
-        if (button == 1) {
-            guiScreen.setModule(module);
-        }
+
     }
 
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {

@@ -9,7 +9,7 @@ public class NoLimbInterp extends Module {
 
     public NoLimbInterp() {
         super("NoLimbInterp", Category.RENDER);
-        addSettings(ignoreSelf);
+       addSettings(ignoreSelf);
     }
 
 }

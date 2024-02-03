@@ -18,8 +18,9 @@ public class BooleanComp extends Componenet {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        context.fill(x, y, x + 30, y + 5, Color.BLUE.getRGB());
+        context.fill(x, y, x + 30, y + 5, Color.BLUE.getRGB()); // Check this part
         context.drawText(mc.textRenderer, setting.getName().concat(" ".concat(String.valueOf(booleanSetting.getValue()))), x, y, -1, true);
         super.render(context, mouseX, mouseY, delta);
     }
+
 }

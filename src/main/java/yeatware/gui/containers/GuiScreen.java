@@ -20,10 +20,10 @@ import static yeatware.Main.mc;
 
 public class GuiScreen extends Screen {
     public Category currentCategory;
-    private final Main main;
-    List<Frame> frames;
     List<Componenet> componenets;
+    private final Main main;
     List<Button> buttons;
+    List<Frame> frames;
     Module module;
     int[] box;
 
@@ -129,14 +129,15 @@ public class GuiScreen extends Screen {
         }
     }
 
-
     public void setModule(Module module) {
         this.module = module;
 
         componenets.clear();
 
+        if (module.getSettings().isEmpty()) return;
+
         int offset = frames.get(0).y + frames.get(0).height + 5;
-        int horizontalX = box[0] + lineOffset + 3;
+        int horizontalX = box[0] + lineOffset + 4;
 
         for (Setting setting : module.getSettings()) {
             if (setting instanceof BooleanSetting boolSet) {
@@ -145,6 +146,7 @@ public class GuiScreen extends Screen {
             }
         }
     }
+
 
     public boolean isSelected(Category category) {
         return currentCategory == category;
