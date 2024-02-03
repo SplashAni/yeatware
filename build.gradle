@@ -26,8 +26,8 @@ dependencies {
 
 	// others
 
-	implementation "meteordevelopment:orbit:0.2.3"
-
+	modImplementation("meteordevelopment:orbit:0.2.3")
+	include("meteordevelopment:orbit:0.2.3")
 }
 
 processResources {

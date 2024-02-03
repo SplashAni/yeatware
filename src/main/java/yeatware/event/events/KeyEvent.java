@@ -1,6 +1,5 @@
 package yeatware.event.events;
 
-import jdk.jshell.EvalException;
 import yeatware.event.Event;
 
 public class KeyEvent extends Event {

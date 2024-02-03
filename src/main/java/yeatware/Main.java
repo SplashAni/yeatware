@@ -20,7 +20,7 @@ public class Main implements ModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger("yeat");
     public static final IEventBus BUS = new EventBus();
     public static MinecraftClient mc = MinecraftClient.getInstance();
-
+    Category category;
 
     @Override
     public void onInitialize() {
@@ -32,8 +32,6 @@ public class Main implements ModInitializer {
 
         LOGGER.info("splash x bennyx x yeat!");
     }
-
-    Category category;
 
     @EventHandler
     public void onKey(KeyEvent event) {

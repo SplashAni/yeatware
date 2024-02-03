@@ -1,17 +1,17 @@
 {
-	"required": true,
-	"package": "yeatware.mixins",
-	"compatibilityLevel": "JAVA_17",
-	"mixins": [
-		"EntityMixin",
-		"LivingEntityMixin",
-		"MinecraftClientMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
-	},
-	"client": [
-		"KeyboardMixin",
-		"ScreenMixin"
-	]
+  "required": true,
+  "package": "yeatware.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "EntityMixin",
+    "LivingEntityMixin",
+    "MinecraftClientMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+    "KeyboardMixin",
+    "ScreenMixin"
+  ]
 }

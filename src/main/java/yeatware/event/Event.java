@@ -4,11 +4,6 @@ import meteordevelopment.orbit.ICancellable;
 
 public class Event implements ICancellable {
     @Override
-    public void setCancelled(boolean cancelled) {
-
-    }
-
-    @Override
     public void cancel() {
         ICancellable.super.cancel();
     }
@@ -16,5 +11,10 @@ public class Event implements ICancellable {
     @Override
     public boolean isCancelled() {
         return false;
+    }
+
+    @Override
+    public void setCancelled(boolean cancelled) {
+
     }
 }

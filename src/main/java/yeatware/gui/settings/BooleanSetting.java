@@ -8,12 +8,16 @@ public class BooleanSetting extends Setting {
         this.value = value;
     }
 
-    public boolean getValue() {
+    public boolean get() {
         return value;
     }
 
     public void setValue(boolean value) {
         this.value = value;
+    }
+
+    public void toggle() {
+        value = !value;
     }
 
     public int getHeight() {

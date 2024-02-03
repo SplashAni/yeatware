@@ -19,13 +19,14 @@ import java.util.List;
 import static yeatware.Main.mc;
 
 public class GuiScreen extends Screen {
+    private final Main main;
     public Category currentCategory;
     List<Componenet> componenets;
-    private final Main main;
     List<Button> buttons;
     List<Frame> frames;
     Module module;
     int[] box;
+    int lineOffset;
 
 
     public GuiScreen(Category currentCategory, Main main) {
@@ -57,14 +58,11 @@ public class GuiScreen extends Screen {
         setCurrentCategory(currentCategory);
     }
 
-
     @Override
     public void close() {
         main.setCategory(currentCategory);
         super.close();
     }
-
-    int lineOffset;
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
@@ -106,10 +104,12 @@ public class GuiScreen extends Screen {
 
     @Override
     public boolean mouseReleased(double mouseX, double mouseY, int button) {
+
         frames.forEach(frame -> frame.mouseReleased(mouseX, mouseY, button));
 
         buttons.forEach(button1 -> button1.mouseReleased(mouseX, mouseY, button));
 
+        componenets.forEach(componenet -> componenet.mouseReleased(mouseX, mouseY, button));
 
         return super.mouseReleased(mouseX, mouseY, button);
     }
@@ -137,13 +137,14 @@ public class GuiScreen extends Screen {
         if (module.getSettings().isEmpty()) return;
 
         int offset = frames.get(0).y + frames.get(0).height + 5;
-        int horizontalX = box[0] + lineOffset + 4;
 
         for (Setting setting : module.getSettings()) {
+
             if (setting instanceof BooleanSetting boolSet) {
-                componenets.add(new BooleanComp(setting, horizontalX, offset));
+                componenets.add(new BooleanComp(setting, box[0] + lineOffset + 7, offset));
                 offset += boolSet.getHeight();
             }
+
         }
     }
 

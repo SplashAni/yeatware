@@ -9,7 +9,7 @@ import java.awt.*;
 
 import static yeatware.Main.mc;
 
-public class  Frame {
+public class Frame {
     GuiScreen guiScreen;
     Category category;
     int width, height;
@@ -59,7 +59,6 @@ public class  Frame {
 
         RenderSystem.setShaderColor(1, 1, 1, 1);
     }
-
 
 
     public void mouseReleased(double mouseX, double mouseY, int button) {
