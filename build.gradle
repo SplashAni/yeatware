@@ -11,7 +11,10 @@ base {
 }
 
 repositories {
-
+	maven {
+		name = "meteor-maven"
+		url = "https://maven.meteordev.org/releases"
+	}
 }
 dependencies {
 
@@ -19,13 +22,12 @@ dependencies {
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-
-
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	repositories.named("Mojang", MavenArtifactRepository) {
-		artifactUrls ArtifactRepositoryContainer.MAVEN_CENTRAL_URL
-	}
+	// others
+
+	implementation "meteordevelopment:orbit:0.2.3"
+
 }
 
 processResources {

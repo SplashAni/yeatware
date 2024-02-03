@@ -8,4 +8,20 @@ public class Fly extends Module {
         super("Fly", Category.MOVEMENT);
     }
 
+    @Override
+    public void onActivate() {
+
+        if (!mc.player.isSpectator() || !mc.player.isCreative()) {
+            mc.player.getAbilities().allowFlying = true;
+        }
+
+        super.onActivate();
+    }
+
+    @Override
+    public void onDeactivate() {
+        mc.player.getAbilities().allowFlying = false;
+        super.onDeactivate();
+    }
+
 }

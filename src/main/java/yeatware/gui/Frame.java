@@ -9,7 +9,7 @@ import java.awt.*;
 
 import static yeatware.Main.mc;
 
-public class Frame {
+public class  Frame {
     GuiScreen guiScreen;
     Category category;
     int width, height;

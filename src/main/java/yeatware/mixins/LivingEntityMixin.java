@@ -18,12 +18,6 @@ import yeatware.system.modules.render.NoLimbInterp;
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity {
 
-    @Shadow
-    public abstract void remove(RemovalReason reason);
-
-    @Shadow
-    public abstract void readCustomDataFromNbt(NbtCompound nbt);
-
     public LivingEntityMixin(EntityType<?> type, World world) {
         super(type, world);
     }

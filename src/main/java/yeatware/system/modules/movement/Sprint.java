@@ -7,4 +7,10 @@ public class Sprint extends Module {
     public Sprint() {
         super("Sprint", Category.MOVEMENT);
     }
+
+    @Override
+    public void onTick() {
+
+        super.onTick();
+    }
 }

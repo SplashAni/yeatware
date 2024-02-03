@@ -19,11 +19,15 @@ public class Button {
     }
 
     public void mouseReleased(double mouseX, double mouseY, int button) {
-        if (isHovered((int) mouseX, (int) mouseY) && button == 0) module.setActive(!module.isActive());
+        if (mc.world == null || mc.player == null) return;
+        if (isHovered((int) mouseX, (int) mouseY) && button == 0) {
+            module.setActive(!module.isActive());
+            if (module.isActive()) module.onActivate();
+            else module.onDeactivate();
+        }
     }
 
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-
         context.drawTextWithShadow(mc.textRenderer, module.getName(), x + 5, y + 2, module.isActive() ? new Color(45, 79, 147, 255).getRGB() : new Color(110, 106, 106, 255).getRGB());
     }
 

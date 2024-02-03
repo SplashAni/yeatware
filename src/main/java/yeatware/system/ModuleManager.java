@@ -41,6 +41,10 @@ public class ModuleManager {
         return modules;
     }
 
+    public List<Module> getActiveModules() {
+        return modules.stream().filter(module -> module.isActive).toList();
+    }
+
     public Module getModule(Class<? extends Module> mod) {
         for (Module module : modules) {
             if (module.getClass() == mod) {
