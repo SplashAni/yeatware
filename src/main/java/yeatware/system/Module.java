@@ -2,9 +2,14 @@ package yeatware.system;
 
 import net.minecraft.client.MinecraftClient;
 import yeatware.Main;
+import yeatware.gui.settings.Setting;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Module {
     public MinecraftClient mc = Main.mc;
+    List<Setting> settings = new ArrayList<>();
     String name;
     String desc;
     Category category;
@@ -20,6 +25,14 @@ public abstract class Module {
         this.name = name;
         this.desc = "";
         this.category = category;
+    }
+
+    public void addSettings(Setting... settings) {
+        this.settings.addAll(List.of(settings));
+    }
+
+    public List<Setting> getSettings() {
+        return settings;
     }
 
     public String getName() {

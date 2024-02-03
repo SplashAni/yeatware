@@ -1,9 +1,13 @@
-package yeatware.gui;
+package yeatware.gui.containers;
 
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 import yeatware.Main;
+import yeatware.gui.containers.comp.BooleanComp;
+import yeatware.gui.containers.comp.Componenet;
+import yeatware.gui.settings.BooleanSetting;
+import yeatware.gui.settings.Setting;
 import yeatware.system.Category;
 import yeatware.system.Module;
 import yeatware.system.ModuleManager;
@@ -18,7 +22,9 @@ public class GuiScreen extends Screen {
     public Category currentCategory;
     private final Main main;
     List<Frame> frames;
+    List<Componenet> componenets;
     List<Button> buttons;
+    Module module;
     int[] box;
 
 
@@ -28,6 +34,7 @@ public class GuiScreen extends Screen {
 
         frames = new ArrayList<>();
         buttons = new ArrayList<>();
+        componenets = new ArrayList<>();
 
 
         int frameWidth = 80;
@@ -57,6 +64,8 @@ public class GuiScreen extends Screen {
         super.close();
     }
 
+    int lineOffset;
+
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         int outlineColor = new Color(61, 60, 60, 255).getRGB();
@@ -74,7 +83,7 @@ public class GuiScreen extends Screen {
 
 
         // ik im gonna forget this ok so , this renders the line that goes down, and the background next to the line
-        int lineOffset = 65;
+        lineOffset = 65;
 
         int horizontalX = box[0] + lineOffset + 3;
         context.fill(horizontalX + 1, box[1] + 2, box[0] + box[2], box[1] + box[3], new Color(44, 42, 42, 255).getRGB());
@@ -87,6 +96,9 @@ public class GuiScreen extends Screen {
 
         if (buttons.isEmpty()) return;
         buttons.forEach(button -> button.render(context, mouseX, mouseY, delta));
+
+        if (!componenets.isEmpty())
+            componenets.forEach(componenet -> componenet.render(context, mouseX, mouseY, delta));
 
         super.render(context, mouseX, mouseY, delta);
     }
@@ -107,15 +119,32 @@ public class GuiScreen extends Screen {
         currentCategory = category;
 
         buttons.clear();
+        componenets.clear();
 
         int offset = 0;
 
         for (Module module : ModuleManager.get().getCategoryModules(category)) {
-            buttons.add(new Button(module, box[0] - 2, box[1] + offset + 2));
+            buttons.add(new Button(this, module, box[0] - 2, box[1] + offset + 2));
             offset += mc.textRenderer.fontHeight + 2;
         }
     }
 
+
+    public void setModule(Module module) {
+        this.module = module;
+
+        componenets.clear();
+
+        int offset = frames.get(0).y + frames.get(0).height + 5;
+        int horizontalX = box[0] + lineOffset + 3;
+
+        for (Setting setting : module.getSettings()) {
+            if (setting instanceof BooleanSetting boolSet) {
+                componenets.add(new BooleanComp(setting, horizontalX, offset));
+                offset += boolSet.getHeight();
+            }
+        }
+    }
 
     public boolean isSelected(Category category) {
         return currentCategory == category;

@@ -1,4 +1,4 @@
-package yeatware.gui;
+package yeatware.gui.containers;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.DrawContext;
