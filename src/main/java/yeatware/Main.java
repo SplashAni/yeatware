@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import yeatware.event.events.KeyEvent;
 import yeatware.gui.GuiScreen;
+import yeatware.system.Category;
 import yeatware.system.ModuleManager;
 
 import java.lang.invoke.MethodHandles;
@@ -32,9 +33,15 @@ public class Main implements ModInitializer {
         LOGGER.info("splash x bennyx x yeat!");
     }
 
+    Category category;
+
     @EventHandler
     public void onKey(KeyEvent event) {
         if (event.getKey() == GLFW.GLFW_KEY_RIGHT_SHIFT && event.getAction() == GLFW.GLFW_PRESS)
-            mc.setScreen(new GuiScreen());
+            mc.setScreen(new GuiScreen(category == null ? Category.COMBAT : category, this));
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

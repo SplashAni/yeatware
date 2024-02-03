@@ -3,6 +3,7 @@ package yeatware.gui;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
+import yeatware.Main;
 import yeatware.system.Category;
 import yeatware.system.Module;
 import yeatware.system.ModuleManager;
@@ -15,12 +16,15 @@ import static yeatware.Main.mc;
 
 public class GuiScreen extends Screen {
     public Category currentCategory;
+    private final Main main;
     List<Frame> frames;
     List<Button> buttons;
     int[] box;
 
-    public GuiScreen() {
+
+    public GuiScreen(Category currentCategory, Main main) {
         super(Text.of("GuiScreen"));
+        this.main = main;
 
         frames = new ArrayList<>();
         buttons = new ArrayList<>();
@@ -42,11 +46,14 @@ public class GuiScreen extends Screen {
          * 3 height */
 
         box = new int[]{(mc.getWindow().getScaledWidth() - totalFramesWidth) / 2, 20 + 15, totalFramesWidth, 150};
+
+        setCurrentCategory(currentCategory);
     }
 
 
     @Override
     public void close() {
+        main.setCategory(currentCategory);
         super.close();
     }
 
