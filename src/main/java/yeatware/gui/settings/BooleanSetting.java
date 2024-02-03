@@ -20,7 +20,4 @@ public class BooleanSetting extends Setting {
         value = !value;
     }
 
-    public int getHeight() {
-        return 15;
-    }
 }

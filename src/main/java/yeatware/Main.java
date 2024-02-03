@@ -11,7 +11,9 @@ import org.slf4j.LoggerFactory;
 import yeatware.event.events.KeyEvent;
 import yeatware.gui.containers.GuiScreen;
 import yeatware.system.Category;
+import yeatware.system.Module;
 import yeatware.system.ModuleManager;
+import yeatware.system.modules.client.Gui;
 
 import java.lang.invoke.MethodHandles;
 
@@ -35,8 +37,14 @@ public class Main implements ModInitializer {
 
     @EventHandler
     public void onKey(KeyEvent event) {
-        if (event.getKey() == GLFW.GLFW_KEY_RIGHT_SHIFT && event.getAction() == GLFW.GLFW_PRESS && !(mc.currentScreen instanceof GuiScreen))
+
+
+        if (event.getKey() == ModuleManager.get().getModule(Gui.class).getKey()
+                && event.getAction() == GLFW.GLFW_PRESS
+                && !(mc.currentScreen instanceof GuiScreen))
             mc.setScreen(new GuiScreen(category == null ? Category.COMBAT : category, this));
+
+        ModuleManager.get().getModules().stream().takeWhile(mod -> event.getKey() != 0).filter(mod -> mod.getKey() == event.getKey()).forEach(Module::toggle);
     }
 
     public void setCategory(Category category) {

@@ -20,4 +20,8 @@ public class Componenet {
     public void mouseReleased(double mouseX, double mouseY, int button) {
     }
 
+    public void keyReleased(int keyCode, int scanCode, int modifiers) {
+
+    }
+
 }

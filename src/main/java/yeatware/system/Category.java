@@ -7,7 +7,7 @@ public enum Category {
     PLAYER("Player"),
     WORLD("World"),
     MISC("Misc"),
-    CLIENT("Client");
+    CLIENT("client");
 
     public final String name;
 

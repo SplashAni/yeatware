@@ -6,7 +6,9 @@ import net.minecraft.text.Text;
 import yeatware.Main;
 import yeatware.gui.containers.comp.BooleanComp;
 import yeatware.gui.containers.comp.Componenet;
+import yeatware.gui.containers.comp.KeybindComp;
 import yeatware.gui.settings.BooleanSetting;
+import yeatware.gui.settings.KeybindSetting;
 import yeatware.gui.settings.Setting;
 import yeatware.system.Category;
 import yeatware.system.Module;
@@ -103,6 +105,12 @@ public class GuiScreen extends Screen {
 
 
     @Override
+    public boolean keyReleased(int keyCode, int scanCode, int modifiers) {
+        componenets.forEach(componenet -> componenet.keyReleased(keyCode, scanCode, modifiers));
+        return super.keyReleased(keyCode, scanCode, modifiers);
+    }
+
+    @Override
     public boolean mouseReleased(double mouseX, double mouseY, int button) {
 
         frames.forEach(frame -> frame.mouseReleased(mouseX, mouseY, button));
@@ -138,11 +146,17 @@ public class GuiScreen extends Screen {
 
         int offset = frames.get(0).y + frames.get(0).height + 5;
 
+        int x = box[0] + lineOffset + 7;
         for (Setting setting : module.getSettings()) {
 
-            if (setting instanceof BooleanSetting boolSet) {
-                componenets.add(new BooleanComp(setting, box[0] + lineOffset + 7, offset));
-                offset += boolSet.getHeight();
+            if (setting instanceof BooleanSetting) {
+                componenets.add(new BooleanComp(setting, x, offset));
+                offset += 15;
+            }
+
+            if (setting instanceof KeybindSetting) {
+                componenets.add(new KeybindComp(setting, x, offset));
+                offset += 15;
             }
 
         }

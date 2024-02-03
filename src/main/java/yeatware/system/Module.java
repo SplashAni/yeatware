@@ -2,6 +2,7 @@ package yeatware.system;
 
 import net.minecraft.client.MinecraftClient;
 import yeatware.Main;
+import yeatware.gui.settings.KeybindSetting;
 import yeatware.gui.settings.Setting;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public abstract class Module {
     String desc;
     Category category;
     boolean isActive;
+    int key;
 
     public Module(String name, String desc, Category category) {
         this.name = name;
@@ -32,9 +34,22 @@ public abstract class Module {
     }
 
     public List<Setting> getSettings() {
+        List<Setting> settings = new ArrayList<>();
+        settings.add(new KeybindSetting("Bind", this, key));
         return settings;
     }
 
+    public int getKey() {
+        return key;
+    }
+
+    public void setKey(int key) {
+        this.key = key;
+    }
+
+    public void toggle(){
+        isActive = !isActive;
+    }
     public String getName() {
         return name;
     }
