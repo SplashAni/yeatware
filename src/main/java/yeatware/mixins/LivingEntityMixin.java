@@ -4,14 +4,19 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LimbAnimator;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import yeatware.system.ModuleManager;
 import yeatware.system.modules.render.NoLimbInterp;
+
+import static yeatware.Main.mc;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity {
@@ -42,11 +47,14 @@ public abstract class LivingEntityMixin extends Entity {
 
     @Unique
     public boolean stop() {
-
-        if (!ModuleManager.get().getModule(NoLimbInterp.class).isActive()) return false;
-
         Entity entity = this;
-        return (entity instanceof PlayerEntity);
+
+        NoLimbInterp noLimbInterp = (NoLimbInterp) ModuleManager.get().getModule(NoLimbInterp.class);
+
+        if (noLimbInterp.isActive()) return false;
+        if (noLimbInterp.ignoreSelf.get() && entity == mc.player) return true;
+
+        return entity instanceof PlayerEntity;
     }
 
 }

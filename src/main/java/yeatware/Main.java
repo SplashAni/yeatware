@@ -35,7 +35,7 @@ public class Main implements ModInitializer {
 
     @EventHandler
     public void onKey(KeyEvent event) {
-        if (event.getKey() == GLFW.GLFW_KEY_RIGHT_SHIFT && event.getAction() == GLFW.GLFW_PRESS)
+        if (event.getKey() == GLFW.GLFW_KEY_RIGHT_SHIFT && event.getAction() == GLFW.GLFW_PRESS && !(mc.currentScreen instanceof GuiScreen))
             mc.setScreen(new GuiScreen(category == null ? Category.COMBAT : category, this));
     }
 
