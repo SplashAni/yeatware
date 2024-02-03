@@ -16,8 +16,8 @@ import static yeatware.Main.mc;
 public class InGameHudMixin {
     @Inject(method = "render", at = @At("HEAD"))
     public void render(DrawContext context, float tickDelta, CallbackInfo ci) {
-        String txt = BetaUtils.isBeta(mc.getGameProfile().getId()) ? "YeatWare 1.0" : "YeatWare Beta";
-        context.drawText(mc.textRenderer, txt, 0, 0, new Color(43, 94, 101, 255).getRGB(), true);
+        String txt = BetaUtils.isBeta(mc.getGameProfile().getId()) ?  "YeatWare Beta" : "YeatWare 1.0";
+        context.drawText(mc.textRenderer, txt, 1, 1, new Color(43, 94, 101, 255).getRGB(), true);
     }
 
 }
