@@ -2,8 +2,8 @@ package yeatware.system;
 
 import net.minecraft.client.MinecraftClient;
 import yeatware.Main;
-import yeatware.gui.settings.KeybindSetting;
-import yeatware.gui.settings.Setting;
+import yeatware.ui.settings.KeybindSetting;
+import yeatware.ui.settings.Setting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +49,8 @@ public abstract class Module {
 
     public void toggle(){
         isActive = !isActive;
+        if (isActive()) onActivate();
+        else onDeactivate();
     }
     public String getName() {
         return name;

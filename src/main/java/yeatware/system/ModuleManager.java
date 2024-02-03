@@ -3,6 +3,7 @@ package yeatware.system;
 import yeatware.system.modules.client.Gui;
 import yeatware.system.modules.movement.Fly;
 import yeatware.system.modules.movement.Sprint;
+import yeatware.system.modules.render.DeathEffect;
 import yeatware.system.modules.render.ForceSneak;
 import yeatware.system.modules.render.NoLimbInterp;
 
@@ -29,6 +30,7 @@ public class ModuleManager {
         add(new Sprint());
         add(new Fly());
         add(new ForceSneak());
+        add(new DeathEffect());
         add(new NoLimbInterp());
         add(new Gui());
         modules.sort(Comparator.comparing(module -> module.getName().toLowerCase()));

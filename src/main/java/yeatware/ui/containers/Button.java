@@ -1,4 +1,4 @@
-package yeatware.gui.containers;
+package yeatware.ui.containers;
 
 import net.minecraft.client.gui.DrawContext;
 import yeatware.system.Module;
@@ -25,10 +25,7 @@ public class Button {
         if (isHovered((int) mouseX, (int) mouseY)) {
             if (button == 0) {
                 if (mc.world == null || mc.player == null) return;
-
-                module.setActive(!module.isActive());
-                if (module.isActive()) module.onActivate();
-                else module.onDeactivate();
+                module.toggle();
             }
             if (button == 1) {
                 guiScreen.setModule(module);

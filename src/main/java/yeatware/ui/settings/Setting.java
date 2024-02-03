@@ -1,4 +1,4 @@
-package yeatware.gui.settings;
+package yeatware.ui.settings;
 
 public class Setting {
     String name;

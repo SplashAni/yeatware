@@ -1,4 +1,4 @@
-package yeatware.gui.settings;
+package yeatware.ui.settings;
 
 import yeatware.system.Module;
 

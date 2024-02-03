@@ -1,8 +1,8 @@
-package yeatware.gui.containers.comp;
+package yeatware.ui.containers.comp;
 
 import net.minecraft.client.gui.DrawContext;
-import yeatware.gui.settings.BooleanSetting;
-import yeatware.gui.settings.Setting;
+import yeatware.ui.settings.BooleanSetting;
+import yeatware.ui.settings.Setting;
 
 import java.awt.*;
 

@@ -1,7 +1,7 @@
-package yeatware.gui.containers.comp;
+package yeatware.ui.containers.comp;
 
 import net.minecraft.client.gui.DrawContext;
-import yeatware.gui.settings.Setting;
+import yeatware.ui.settings.Setting;
 
 public class Componenet {
     Setting setting;

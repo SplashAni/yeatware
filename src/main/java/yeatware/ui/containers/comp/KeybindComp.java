@@ -1,10 +1,10 @@
-package yeatware.gui.containers.comp;
+package yeatware.ui.containers.comp;
 
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.util.InputUtil;
 import org.lwjgl.glfw.GLFW;
-import yeatware.gui.settings.KeybindSetting;
-import yeatware.gui.settings.Setting;
+import yeatware.ui.settings.KeybindSetting;
+import yeatware.ui.settings.Setting;
 
 import static yeatware.Main.mc;
 

@@ -1,6 +1,6 @@
 package yeatware.system.modules.render;
 
-import yeatware.gui.settings.BooleanSetting;
+import yeatware.ui.settings.BooleanSetting;
 import yeatware.system.Category;
 import yeatware.system.Module;
 

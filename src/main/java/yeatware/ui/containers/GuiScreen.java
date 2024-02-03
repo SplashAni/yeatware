@@ -1,15 +1,15 @@
-package yeatware.gui.containers;
+package yeatware.ui.containers;
 
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 import yeatware.Main;
-import yeatware.gui.containers.comp.BooleanComp;
-import yeatware.gui.containers.comp.Componenet;
-import yeatware.gui.containers.comp.KeybindComp;
-import yeatware.gui.settings.BooleanSetting;
-import yeatware.gui.settings.KeybindSetting;
-import yeatware.gui.settings.Setting;
+import yeatware.ui.containers.comp.BooleanComp;
+import yeatware.ui.containers.comp.Componenet;
+import yeatware.ui.containers.comp.KeybindComp;
+import yeatware.ui.settings.BooleanSetting;
+import yeatware.ui.settings.KeybindSetting;
+import yeatware.ui.settings.Setting;
 import yeatware.system.Category;
 import yeatware.system.Module;
 import yeatware.system.ModuleManager;
