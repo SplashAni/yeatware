@@ -22,15 +22,19 @@ public class BooleanComp extends Componenet {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        context.fill(x, y, x + boxWidth, y + boxHeight, new Color(71, 71, 166,255).getRGB());
+        context.fill(x, y, x + boxWidth, y + boxHeight, new Color(32, 32, 40, 255).getRGB());
 
         if (booleanSetting.get()) {
+            int innerBoxSize = 5;
+            int innerBoxX = x + (boxWidth - innerBoxSize) / 2;
+            int innerBoxY = y + (boxHeight - innerBoxSize) / 2;
+
             context.fill(
-                    x + (boxWidth - 6) / 2,
-                    y + (boxHeight - 6) / 2,
-                    x + (boxWidth + 6) / 2,
-                    y + (boxHeight + 6) / 2,
-                    new Color(53, 73, 98,255).getRGB()
+                    innerBoxX,
+                    innerBoxY,
+                    innerBoxX + innerBoxSize,
+                    innerBoxY + innerBoxSize,
+                    new Color(53, 73, 98, 255).getRGB()
             );
         }
 
@@ -38,6 +42,7 @@ public class BooleanComp extends Componenet {
 
         super.render(context, mouseX, mouseY, delta);
     }
+
 
     @Override
     public void mouseReleased(double mouseX, double mouseY, int button) {
