@@ -4,15 +4,15 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 import yeatware.Main;
+import yeatware.system.Category;
+import yeatware.system.Module;
+import yeatware.system.ModuleManager;
 import yeatware.ui.containers.comp.BooleanComp;
 import yeatware.ui.containers.comp.Componenet;
 import yeatware.ui.containers.comp.KeybindComp;
 import yeatware.ui.settings.BooleanSetting;
 import yeatware.ui.settings.KeybindSetting;
 import yeatware.ui.settings.Setting;
-import yeatware.system.Category;
-import yeatware.system.Module;
-import yeatware.system.ModuleManager;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -86,6 +86,7 @@ public class GuiScreen extends Screen {
         lineOffset = 65;
 
         int horizontalX = box[0] + lineOffset + 3;
+
         context.fill(horizontalX + 1, box[1] + 2, box[0] + box[2], box[1] + box[3], new Color(44, 42, 42, 255).getRGB());
 
         int verticalX = box[0] + lineOffset + 3;
@@ -158,11 +159,8 @@ public class GuiScreen extends Screen {
                 componenets.add(new KeybindComp(setting, x, offset));
                 offset += 15;
             }
-
         }
     }
-
-
     public boolean isSelected(Category category) {
         return currentCategory == category;
     }

@@ -14,6 +14,7 @@
   "client": [
     "InGameHudMixin",
     "KeyboardMixin",
+    "LightmapTextureManagerMixin",
     "ScreenMixin"
   ]
 }

@@ -25,7 +25,7 @@ public class KeybindComp extends Componenet {
             currentText = "Binding...";
             context.drawText(mc.textRenderer, currentText, x, y, -1, true);
         } else {
-            currentText = keybindSetting.getKey() == 0 ? "None" : "Key: " + InputUtil.fromKeyCode(keybindSetting.getKey(), -1).getLocalizedText().getString();
+            currentText = keybindSetting.getKey() == 0 ? "Key: None" : "Key: " + InputUtil.fromKeyCode(keybindSetting.getKey(), -1).getLocalizedText().getString();
             context.drawText(mc.textRenderer, currentText, x, y, -1, true);
         }
         super.render(context, mouseX, mouseY, delta);

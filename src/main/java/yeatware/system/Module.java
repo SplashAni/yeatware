@@ -34,10 +34,11 @@ public abstract class Module {
     }
 
     public List<Setting> getSettings() {
-        List<Setting> settings = new ArrayList<>();
+        List<Setting> settings = new ArrayList<>(this.settings);
         settings.add(new KeybindSetting("Bind", this, key));
         return settings;
     }
+
 
     public int getKey() {
         return key;
@@ -47,11 +48,12 @@ public abstract class Module {
         this.key = key;
     }
 
-    public void toggle(){
+    public void toggle() {
         isActive = !isActive;
         if (isActive()) onActivate();
         else onDeactivate();
     }
+
     public String getName() {
         return name;
     }
