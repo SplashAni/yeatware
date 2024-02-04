@@ -7,11 +7,13 @@ public class Componenet {
     Setting setting;
     int x;
     int y;
+    int length;
 
     public Componenet(Setting setting, int x, int y) {
         this.setting = setting;
         this.x = x;
         this.y = y;
+        this.length = length;
     }
 
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
@@ -24,4 +26,6 @@ public class Componenet {
 
     }
 
+    public void mouseClicked(double mouseX, double mouseY, int button) {
+    }
 }

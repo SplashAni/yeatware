@@ -10,13 +10,16 @@ import yeatware.system.ModuleManager;
 import yeatware.ui.containers.comp.BooleanComp;
 import yeatware.ui.containers.comp.Componenet;
 import yeatware.ui.containers.comp.KeybindComp;
+import yeatware.ui.containers.comp.NumberComp;
 import yeatware.ui.settings.BooleanSetting;
 import yeatware.ui.settings.KeybindSetting;
+import yeatware.ui.settings.NumberSetting;
 import yeatware.ui.settings.Setting;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static yeatware.Main.mc;
 
@@ -123,6 +126,11 @@ public class GuiScreen extends Screen {
         return super.mouseReleased(mouseX, mouseY, button);
     }
 
+    @Override
+    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+        componenets.forEach(componenet -> componenet.mouseClicked(mouseX, mouseY, button));
+        return super.mouseClicked(mouseX, mouseY, button);
+    }
 
     public void setCurrentCategory(Category category) {
         currentCategory = category;
@@ -145,13 +153,18 @@ public class GuiScreen extends Screen {
 
         if (module.getSettings().isEmpty()) return;
 
-        int offset = frames.get(0).y + frames.get(0).height + 5;
+        // int offset = frames.get(0).y + frames.get(0).height + 5;
 
         int x = box[0] + lineOffset + 7;
-        for (Setting setting : module.getSettings()) {
+        AtomicInteger maxLength = new AtomicInteger();
 
+        module.getSettings().stream().filter(setting -> maxLength.get() < mc.textRenderer.getWidth(setting.getName())).forEach(setting -> maxLength.set(mc.textRenderer.getWidth(setting.getName())));
+
+        int offset = frames.get(0).y + frames.get(0).height + 5;
+
+        for (Setting setting : module.getSettings()) {
             if (setting instanceof BooleanSetting) {
-                componenets.add(new BooleanComp(setting, x, offset));
+                componenets.add(new BooleanComp(setting, x, offset, maxLength.get()));
                 offset += 15;
             }
 
@@ -159,8 +172,16 @@ public class GuiScreen extends Screen {
                 componenets.add(new KeybindComp(setting, x, offset));
                 offset += 15;
             }
+
+            if (setting instanceof NumberSetting) {
+                componenets.add(new NumberComp(setting, x, offset, maxLength.get()));
+                offset += 15;
+            }
         }
+
+
     }
+
     public boolean isSelected(Category category) {
         return currentCategory == category;
     }

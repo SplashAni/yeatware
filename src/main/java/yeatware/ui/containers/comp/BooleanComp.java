@@ -10,11 +10,12 @@ import static yeatware.Main.mc;
 
 public class BooleanComp extends Componenet {
     BooleanSetting booleanSetting;
-    int boxWidth, boxHeight;
+    int boxWidth, boxHeight, maxLength;
 
-    public BooleanComp(Setting setting, int x, int y) {
+    public BooleanComp(Setting setting, int x, int y, int maxLength) {
         super(setting, x, y);
         booleanSetting = (BooleanSetting) setting;
+        this.maxLength = maxLength;
 
         boxWidth = 10;
         boxHeight = 10;
@@ -22,24 +23,19 @@ public class BooleanComp extends Componenet {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        context.fill(x, y, x + boxWidth, y + boxHeight, new Color(32, 32, 40, 255).getRGB());
+        context.drawText(mc.textRenderer, setting.getName(), x, y, -1, true);
+
+        int boxX = x + maxLength;
+
+        context.fill(boxX, y, boxX + boxWidth, y + boxHeight, new Color(32, 32, 40, 255).getRGB());
 
         if (booleanSetting.get()) {
             int innerBoxSize = 6;
-
-            int innerBoxX = x + (boxWidth - innerBoxSize) / 2;
+            int innerBoxX = boxX + (boxWidth - innerBoxSize) / 2;
             int innerBoxY = y + (boxHeight - innerBoxSize) / 2;
 
-            context.fill(
-                    innerBoxX,
-                    innerBoxY,
-                    innerBoxX + innerBoxSize,
-                    innerBoxY + innerBoxSize,
-                    new Color(53, 73, 98, 255).getRGB()
-            );
+            context.fill(innerBoxX, innerBoxY, innerBoxX + innerBoxSize, innerBoxY + innerBoxSize, new Color(53, 73, 98, 255).getRGB());
         }
-
-        context.drawText(mc.textRenderer, setting.getName(), x + boxWidth + 3, y, -1, true);
 
         super.render(context, mouseX, mouseY, delta);
     }
@@ -51,6 +47,7 @@ public class BooleanComp extends Componenet {
     }
 
     private boolean isHovered(double mouseX, double mouseY) {
-        return mouseX >= x && mouseX <= x + boxWidth && mouseY >= y && mouseY <= y + boxHeight;
+        return mouseX >= x + maxLength && mouseX <= x + maxLength + boxWidth
+                && mouseY >= y && mouseY <= y + boxHeight;
     }
 }
