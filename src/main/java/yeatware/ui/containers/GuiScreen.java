@@ -164,7 +164,7 @@ public class GuiScreen extends Screen {
 
         for (Setting setting : module.getSettings()) {
             if (setting instanceof BooleanSetting) {
-                componenets.add(new BooleanComp(setting, x, offset, maxLength.get()));
+                componenets.add(new BooleanComp(setting, x, offset, maxLength.get() + 3));
                 offset += 15;
             }
 
@@ -174,7 +174,7 @@ public class GuiScreen extends Screen {
             }
 
             if (setting instanceof NumberSetting) {
-                componenets.add(new NumberComp(setting, x, offset, maxLength.get()));
+                componenets.add(new NumberComp(setting, x, offset, maxLength.get() + 3));
                 offset += 15;
             }
         }
