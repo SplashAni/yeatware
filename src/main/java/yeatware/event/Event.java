@@ -3,18 +3,19 @@ package yeatware.event;
 import meteordevelopment.orbit.ICancellable;
 
 public class Event implements ICancellable {
-    @Override
-    public void cancel() {
-        ICancellable.super.cancel();
-    }
-
+    private boolean cancelled = false;
     @Override
     public boolean isCancelled() {
-        return false;
+        return cancelled;
     }
 
     @Override
     public void setCancelled(boolean cancelled) {
+        this.cancelled = cancelled;
+    }
 
+    @Override
+    public void cancel() {
+        this.setCancelled(true);
     }
 }

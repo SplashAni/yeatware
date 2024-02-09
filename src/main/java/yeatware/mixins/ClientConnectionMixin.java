@@ -21,6 +21,6 @@ public class ClientConnectionMixin {
     @Inject(method = "channelRead0*", at = @At("HEAD"), cancellable = true)
     public void channelRead0(ChannelHandlerContext chc, Packet<?> packet, CallbackInfo ci) {
         if (channel.isOpen() && packet != null)
-            if (Main.BUS.post(new PacketReceiveEvent(packet)).isCancelled()) ci.cancel();
+            if (Main.EVENT_BUS.post(new PacketReceiveEvent(packet)).isCancelled()) ci.cancel();
     }
 }

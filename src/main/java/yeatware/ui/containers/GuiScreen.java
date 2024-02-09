@@ -25,11 +25,11 @@ import static yeatware.Main.mc;
 
 public class GuiScreen extends Screen {
     private final Main main;
-    public Category currentCategory;
-    List<Componenet> componenets;
-    List<Button> buttons;
-    List<Frame> frames;
-    Module module;
+    private Category currentCategory;
+    private final List<Componenet> components;
+    private final List<Button> buttons;
+    private final List<Frame> frames;
+     Module module;
     int[] box;
     int lineOffset;
 
@@ -40,7 +40,7 @@ public class GuiScreen extends Screen {
 
         frames = new ArrayList<>();
         buttons = new ArrayList<>();
-        componenets = new ArrayList<>();
+        components = new ArrayList<>();
 
 
         int frameWidth = 80;
@@ -101,8 +101,8 @@ public class GuiScreen extends Screen {
         if (buttons.isEmpty()) return;
         buttons.forEach(button -> button.render(context, mouseX, mouseY, delta));
 
-        if (!componenets.isEmpty())
-            componenets.forEach(componenet -> componenet.render(context, mouseX, mouseY, delta));
+        if (!components.isEmpty())
+            components.forEach(componenet -> componenet.render(context, mouseX, mouseY, delta));
 
         super.render(context, mouseX, mouseY, delta);
     }
@@ -110,7 +110,7 @@ public class GuiScreen extends Screen {
 
     @Override
     public boolean keyReleased(int keyCode, int scanCode, int modifiers) {
-        componenets.forEach(componenet -> componenet.keyReleased(keyCode, scanCode, modifiers));
+        components.forEach(componenet -> componenet.keyReleased(keyCode, scanCode, modifiers));
         return super.keyReleased(keyCode, scanCode, modifiers);
     }
 
@@ -121,14 +121,14 @@ public class GuiScreen extends Screen {
 
         buttons.forEach(button1 -> button1.mouseReleased(mouseX, mouseY, button));
 
-        componenets.forEach(componenet -> componenet.mouseReleased(mouseX, mouseY, button));
+        components.forEach(componenet -> componenet.mouseReleased(mouseX, mouseY, button));
 
         return super.mouseReleased(mouseX, mouseY, button);
     }
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        componenets.forEach(componenet -> componenet.mouseClicked(mouseX, mouseY, button));
+        components.forEach(componenet -> componenet.mouseClicked(mouseX, mouseY, button));
         return super.mouseClicked(mouseX, mouseY, button);
     }
 
@@ -136,7 +136,7 @@ public class GuiScreen extends Screen {
         currentCategory = category;
 
         buttons.clear();
-        componenets.clear();
+        components.clear();
 
         int offset = 0;
 
@@ -149,7 +149,7 @@ public class GuiScreen extends Screen {
     public void setModule(Module module) {
         this.module = module;
 
-        componenets.clear();
+        components.clear();
 
         if (module.getSettings().isEmpty()) return;
 
@@ -164,17 +164,17 @@ public class GuiScreen extends Screen {
 
         for (Setting setting : module.getSettings()) {
             if (setting instanceof BooleanSetting) {
-                componenets.add(new BooleanComp(setting, x, offset, maxLength.get() + 3));
+                components.add(new BooleanComp(setting, x, offset, maxLength.get() + 3));
                 offset += 15;
             }
 
             if (setting instanceof KeybindSetting) {
-                componenets.add(new KeybindComp(setting, x, offset));
+                components.add(new KeybindComp(setting, x, offset));
                 offset += 15;
             }
 
             if (setting instanceof NumberSetting) {
-                componenets.add(new NumberComp(setting, x, offset, maxLength.get() + 3));
+                components.add(new NumberComp(setting, x, offset, maxLength.get() + 3));
                 offset += 15;
             }
         }

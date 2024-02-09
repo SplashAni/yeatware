@@ -1,6 +1,6 @@
 package yeatware;
 
-import meteordevelopment.orbit.EventBus;
+import io.github.racoondog.norbit.EventBus;
 import meteordevelopment.orbit.EventHandler;
 import meteordevelopment.orbit.IEventBus;
 import net.fabricmc.api.ModInitializer;
@@ -20,8 +20,8 @@ import java.lang.invoke.MethodHandles;
 public class Main implements ModInitializer {
 
     public static final Logger LOGGER = LoggerFactory.getLogger("yeat");
-    public static final IEventBus BUS = new EventBus();
-    public static MinecraftClient mc = MinecraftClient.getInstance();
+    public static final IEventBus EVENT_BUS = EventBus.threadSafe();
+    public static final MinecraftClient mc = MinecraftClient.getInstance();
     Category category;
 
     @Override
@@ -29,8 +29,8 @@ public class Main implements ModInitializer {
 
         ModuleManager.get().init();
 
-        BUS.registerLambdaFactory("yeatware", (lookupInMethod, klass) -> (MethodHandles.Lookup) lookupInMethod.invoke(null, klass, MethodHandles.lookup()));
-        BUS.subscribe(this);
+        EVENT_BUS.registerLambdaFactory("yeatware", (lookupInMethod, klass) -> (MethodHandles.Lookup) lookupInMethod.invoke(null, klass, MethodHandles.lookup()));
+        EVENT_BUS.subscribe(this);
 
         LOGGER.info("splash x bennyx x yeat!");
     }

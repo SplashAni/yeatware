@@ -4,9 +4,9 @@ import net.minecraft.client.gui.DrawContext;
 import yeatware.ui.settings.Setting;
 
 public class Componenet {
-    Setting setting;
-    int x;
-    int y;
+    public final Setting setting;
+    public final int x;
+    public final int y;
     int length;
 
     public Componenet(Setting setting, int x, int y) {

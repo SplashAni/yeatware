@@ -9,16 +9,16 @@ import java.awt.*;
 import static yeatware.Main.mc;
 
 public class BooleanComp extends Componenet {
-    BooleanSetting booleanSetting;
-    int boxWidth, boxHeight, maxLength;
+    private final BooleanSetting booleanSetting;
+    private final int boxWidth, boxHeight, maxLength;
 
     public BooleanComp(Setting setting, int x, int y, int maxLength) {
         super(setting, x, y);
         booleanSetting = (BooleanSetting) setting;
         this.maxLength = maxLength;
 
-        boxWidth = 10;
-        boxHeight = 10;
+        boxWidth = 5;
+        boxHeight = 5;
     }
 
     @Override
