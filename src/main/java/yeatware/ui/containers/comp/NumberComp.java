@@ -5,8 +5,6 @@ import yeatware.ui.settings.NumberSetting;
 import yeatware.ui.settings.Setting;
 
 import java.awt.*;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 import static yeatware.Main.mc;
 
@@ -26,9 +24,9 @@ public class NumberComp extends Componenet {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        context.drawText(mc.textRenderer, setting.getName(), x, y, -1, true);
+        context.drawText(mc.textRenderer, setting.getName().concat(" " + numberSetting.get()), x, y, -1, true);
 
-        context.fill(x + maxLength, y + boxHeight / 2, x + maxLength + lineLength, y + boxHeight / 2 + 1, new Color(18, 18, 52, 255).getRGB());
+        context.fill(x + maxLength, y + boxHeight / 2, x + maxLength + lineLength, y + boxHeight / 2 + 2, new Color(22, 22, 56, 255).getRGB());
 
         if (sliding) {
             int calculatedValue = calculateValue(mouseX);
@@ -47,7 +45,7 @@ public class NumberComp extends Componenet {
     public void mouseClicked(double mouseX, double mouseY, int button) {
         if (isHovered((int) mouseX, (int) mouseY) && button == 0) {
             sliding = true;
-            numberSetting.setValue(calculateValue(mouseX));
+            //numberSetting.setValue(calculateValue(mouseX));
         }
         super.mouseClicked(mouseX, mouseY, button);
     }
@@ -59,10 +57,11 @@ public class NumberComp extends Componenet {
         relativeX = Math.max(0, Math.min(relativeX, maxX));
 
         double percentage = (double) relativeX / (double) maxX;
-        double sliderValue = percentage * numberSetting.getMax();
+        double sliderValue = percentage * (numberSetting.getMax() - numberSetting.getMin()) + numberSetting.getMin();
 
         return (int) sliderValue;
     }
+
 
     @Override
     public void mouseReleased(double mouseX, double mouseY, int button) {

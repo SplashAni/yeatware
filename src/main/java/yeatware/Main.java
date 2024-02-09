@@ -14,6 +14,7 @@ import yeatware.system.Module;
 import yeatware.system.ModuleManager;
 import yeatware.system.modules.client.Gui;
 import yeatware.ui.containers.GuiScreen;
+import yeatware.utils.BetaUtils;
 
 import java.lang.invoke.MethodHandles;
 
@@ -28,6 +29,7 @@ public class Main implements ModInitializer {
     public void onInitialize() {
 
         ModuleManager.get().init();
+        BetaUtils.get().init();
 
         BUS.registerLambdaFactory("yeatware", (lookupInMethod, klass) -> (MethodHandles.Lookup) lookupInMethod.invoke(null, klass, MethodHandles.lookup()));
         BUS.subscribe(this);

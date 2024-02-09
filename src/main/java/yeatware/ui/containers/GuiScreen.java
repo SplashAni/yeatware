@@ -7,14 +7,8 @@ import yeatware.Main;
 import yeatware.system.Category;
 import yeatware.system.Module;
 import yeatware.system.ModuleManager;
-import yeatware.ui.containers.comp.BooleanComp;
-import yeatware.ui.containers.comp.Componenet;
-import yeatware.ui.containers.comp.KeybindComp;
-import yeatware.ui.containers.comp.NumberComp;
-import yeatware.ui.settings.BooleanSetting;
-import yeatware.ui.settings.KeybindSetting;
-import yeatware.ui.settings.NumberSetting;
-import yeatware.ui.settings.Setting;
+import yeatware.ui.containers.comp.*;
+import yeatware.ui.settings.*;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -153,8 +147,6 @@ public class GuiScreen extends Screen {
 
         if (module.getSettings().isEmpty()) return;
 
-        // int offset = frames.get(0).y + frames.get(0).height + 5;
-
         int x = box[0] + lineOffset + 7;
         AtomicInteger maxLength = new AtomicInteger();
 
@@ -163,8 +155,9 @@ public class GuiScreen extends Screen {
         int offset = frames.get(0).y + frames.get(0).height + 5;
 
         for (Setting setting : module.getSettings()) {
+            int length = maxLength.get() + 3;
             if (setting instanceof BooleanSetting) {
-                componenets.add(new BooleanComp(setting, x, offset, maxLength.get() + 3));
+                componenets.add(new BooleanComp(setting, x, offset, length));
                 offset += 15;
             }
 
@@ -174,7 +167,11 @@ public class GuiScreen extends Screen {
             }
 
             if (setting instanceof NumberSetting) {
-                componenets.add(new NumberComp(setting, x, offset, maxLength.get() + 3));
+                componenets.add(new NumberComp(setting, x, offset, length));
+                offset += 15;
+            }
+            if (setting instanceof ModeSetting<?>) {
+                componenets.add(new ModeComp(setting, x, offset, length));
                 offset += 15;
             }
         }
