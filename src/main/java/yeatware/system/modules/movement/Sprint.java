@@ -10,7 +10,6 @@ public class Sprint extends Module {
 
     @Override
     public void onTick() {
-
-        super.onTick();
+        if (!mc.player.isSprinting()) mc.player.setSprinting(true);
     }
 }

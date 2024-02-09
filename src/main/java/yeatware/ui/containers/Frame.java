@@ -10,10 +10,10 @@ import java.awt.*;
 import static yeatware.Main.mc;
 
 public class Frame {
-    GuiScreen guiScreen;
-    Category category;
-    int width, height;
-    int x, y;
+    private final GuiScreen guiScreen;
+    private final Category category;
+    public final int width, height;
+    public int x, y;
 
     public Frame(GuiScreen guiScreen, Category category, int width, int height, int x, int y) {
         this.guiScreen = guiScreen;

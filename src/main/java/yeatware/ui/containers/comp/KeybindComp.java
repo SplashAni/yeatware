@@ -9,9 +9,9 @@ import yeatware.ui.settings.Setting;
 import static yeatware.Main.mc;
 
 public class KeybindComp extends Componenet {
-    KeybindSetting keybindSetting;
-    boolean isBinding;
-    String currentText;
+    private final KeybindSetting keybindSetting;
+    private boolean isBinding;
+    private String currentText;
 
     public KeybindComp(Setting setting, int x, int y) {
         super(setting, x, y);

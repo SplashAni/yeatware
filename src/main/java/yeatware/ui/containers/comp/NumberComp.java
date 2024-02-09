@@ -5,18 +5,16 @@ import yeatware.ui.settings.NumberSetting;
 import yeatware.ui.settings.Setting;
 
 import java.awt.*;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 import static yeatware.Main.mc;
 
 public class NumberComp extends Componenet {
-    NumberSetting numberSetting;
-    int maxLength;
-    int lineLength = 50;
-    int boxWidth = 7;
-    int boxHeight = 7;
-    boolean sliding;
+    private final NumberSetting numberSetting;
+    private final int maxLength;
+    private final int lineLength = 50;
+    private final int boxWidth = 7;
+    private final int boxHeight = 7;
+    private boolean sliding;
 
     public NumberComp(Setting setting, int x, int y, int maxLength) {
         super(setting, x, y);

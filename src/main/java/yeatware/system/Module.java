@@ -11,9 +11,9 @@ import java.util.List;
 public abstract class Module {
     public MinecraftClient mc = Main.mc;
     List<Setting> settings = new ArrayList<>();
-    String name;
-    String desc;
-    Category category;
+    private final String name;
+    private final String desc;
+    private final Category category;
     boolean isActive;
     int key;
 
@@ -58,10 +58,6 @@ public abstract class Module {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public boolean isActive() {
         return isActive;
     }
@@ -74,16 +70,8 @@ public abstract class Module {
         return desc;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
     public Category getCategory() {
         return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 
     public void onTick() {
@@ -91,10 +79,10 @@ public abstract class Module {
     }
 
     public void onActivate() {
-        Main.BUS.subscribe(this);
+        Main.EVENT_BUS.subscribe(this);
     }
 
     public void onDeactivate() {
-        Main.BUS.unsubscribe(this);
+        Main.EVENT_BUS.unsubscribe(this);
     }
 }

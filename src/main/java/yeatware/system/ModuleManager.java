@@ -12,7 +12,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class ModuleManager {
-    private static ModuleManager instance;
+    private static ModuleManager instance = new ModuleManager();
     private final List<Module> modules;
 
     private ModuleManager() {
@@ -20,9 +20,6 @@ public class ModuleManager {
     }
 
     public static ModuleManager get() {
-        if (instance == null) {
-            instance = new ModuleManager();
-        }
         return instance;
     }
 

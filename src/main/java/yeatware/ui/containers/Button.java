@@ -8,10 +8,11 @@ import java.awt.*;
 import static yeatware.Main.mc;
 
 public class Button {
-    GuiScreen guiScreen;
-    Module module;
-    int x;
-    int y;
+    private final GuiScreen guiScreen;
+    private final Module module;
+    public final int x;
+
+    public final int y;
 
     public Button(GuiScreen guiScreen, Module module, int x, int y) {
         this.guiScreen = guiScreen;
@@ -35,9 +36,8 @@ public class Button {
     }
 
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-
         context.drawTextWithShadow(mc.textRenderer, module.getName(), x + 5, y + 2,
-                module.isActive() ? new Color(45, 79, 147, 255).getRGB() : new Color(110, 106, 106, 255).
+                module.isActive() ? new Color(93, 136, 220, 255).getRGB() : new Color(166, 166, 166, 255).
                         getRGB()
         );
 
@@ -45,7 +45,6 @@ public class Button {
 
 
     private boolean isHovered(int mouseX, int mouseY) {
-        return mouseX >= x && mouseX <= x + mc.textRenderer.getWidth(module.getName()) && mouseY >= y && mouseY <= y + mc.textRenderer.fontHeight;
+        return mouseX >= x && mouseX <= x + 88 && mouseY >= y && mouseY <= y + mc.textRenderer.fontHeight;
     }
-
 }

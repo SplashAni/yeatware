@@ -24,8 +24,11 @@ dependencies {
 
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	modImplementation("meteordevelopment:orbit:0.2.3")
-	include("meteordevelopment:orbit:0.2.3")
+	modImplementation("meteordevelopment:orbit:0.2.4")
+	include("meteordevelopment:orbit:0.2.4")
+
+	modImplementation("io.github.racoondog:norbit:1.1.0")
+	implementation "io.github.racoondog:norbit:1.1.0"
 }
 
 processResources {

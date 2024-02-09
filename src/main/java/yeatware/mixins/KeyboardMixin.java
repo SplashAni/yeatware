@@ -12,8 +12,6 @@ import yeatware.event.events.KeyEvent;
 public class KeyboardMixin {
     @Inject(method = "onKey", at = @At("HEAD"), cancellable = true)
     public void onKey(long window, int key, int scancode, int action, int modifiers, CallbackInfo ci) {
-
-        if (Main.BUS.post(new KeyEvent(key, action, modifiers)).isCancelled()) ci.cancel();
-
+        if (Main.EVENT_BUS.post(new KeyEvent(key, action, modifiers)).isCancelled()) ci.cancel();
     }
 }
