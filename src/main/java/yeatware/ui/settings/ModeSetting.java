@@ -13,12 +13,16 @@ public class ModeSetting<T extends Enum<T>> extends Setting {
         this.mode = mode;
     }
 
-    public T getMode() {
+    public T get() {
         return mode;
     }
 
     public void setMode(T mode) {
         this.mode = mode;
+    }
+
+    public boolean is(T mode) {
+        return mode == get();
     }
 
     public void nextMode() {

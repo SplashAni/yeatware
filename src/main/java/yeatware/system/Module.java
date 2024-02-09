@@ -1,6 +1,7 @@
 package yeatware.system;
 
 import net.minecraft.client.MinecraftClient;
+import org.jetbrains.annotations.NotNull;
 import yeatware.Main;
 import yeatware.ui.settings.KeybindSetting;
 import yeatware.ui.settings.Setting;

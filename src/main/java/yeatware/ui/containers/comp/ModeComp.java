@@ -22,19 +22,19 @@ public class ModeComp extends Componenet {
 
         context.drawText(mc.textRenderer, setting.getName(), x, y, -1, true);
 
-        context.drawText(mc.textRenderer, modeSetting.getMode().name(), x + maxLength, y, -1, true);
+        context.drawText(mc.textRenderer, modeSetting.get().name(), x + mc.textRenderer.getWidth(setting.getName()) + 5, y, -1, true);
 
         super.render(context, mouseX, mouseY, delta);
     }
 
     @Override
     public void mouseClicked(double mouseX, double mouseY, int button) {
-        if(isHovered(mouseX,mouseY)) modeSetting.nextMode();
+        if (isHovered(mouseX, mouseY)) modeSetting.nextMode();
         super.mouseClicked(mouseX, mouseY, button);
     }
 
     public boolean isHovered(double mouseX, double mouseY) {
-        return mouseX >= x + maxLength && mouseX <= x + maxLength + mc.textRenderer.getWidth(modeSetting.getMode().name()) && mouseY >= y && mouseY <= y + mc.textRenderer.fontHeight;
+        return mouseX >= x && mouseX <= x + mc.textRenderer.getWidth(setting.getName()) + 5 + mc.textRenderer.getWidth(modeSetting.get().name()) && mouseY >= y && mouseY <= y + mc.textRenderer.fontHeight;
     }
 
 }

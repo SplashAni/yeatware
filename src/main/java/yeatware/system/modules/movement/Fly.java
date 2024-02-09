@@ -19,6 +19,11 @@ public class Fly extends Module {
     }
 
     @Override
+    public void onTick() {
+        super.onTick();
+    }
+
+    @Override
     public void onDeactivate() {
         mc.player.getAbilities().allowFlying = false;
         super.onDeactivate();

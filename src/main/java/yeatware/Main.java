@@ -5,6 +5,7 @@ import meteordevelopment.orbit.EventHandler;
 import meteordevelopment.orbit.IEventBus;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.client.MinecraftClient;
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.glfw.GLFW;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +23,7 @@ public class Main implements ModInitializer {
 
     public static final Logger LOGGER = LoggerFactory.getLogger("yeat");
     public static final IEventBus BUS = new EventBus();
+    @NotNull
     public static MinecraftClient mc = MinecraftClient.getInstance();
     Category category;
 
@@ -34,7 +36,7 @@ public class Main implements ModInitializer {
         BUS.registerLambdaFactory("yeatware", (lookupInMethod, klass) -> (MethodHandles.Lookup) lookupInMethod.invoke(null, klass, MethodHandles.lookup()));
         BUS.subscribe(this);
 
-       // mc.gameRenderer.renderHand();
+        // mc.gameRenderer.renderHand();
         LOGGER.info("splash x bennyx x yeat!");
     }
 
