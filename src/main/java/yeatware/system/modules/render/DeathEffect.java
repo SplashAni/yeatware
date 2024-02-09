@@ -21,10 +21,12 @@ public class DeathEffect extends Module {
             Entity entity = packet.getEntity(mc.world);
             LightningEntity lightningEntity = new LightningEntity(EntityType.LIGHTNING_BOLT, mc.world);
 
-            lightningEntity.updatePosition(entity.getX(), entity.getY(), entity.getZ());
+            lightningEntity.updatePosition(entity != null ? entity.getX() : 0, entity.getY(), entity.getZ());
             lightningEntity.refreshPositionAfterTeleport(entity.getX(), entity.getY(), entity.getZ());
 
-            mc.world.addEntity(lightningEntity);
+            if (mc.world != null) {
+                mc.world.addEntity(lightningEntity);
+            }
         }
     }
 

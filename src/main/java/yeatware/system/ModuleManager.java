@@ -5,6 +5,7 @@ import yeatware.system.modules.movement.Fly;
 import yeatware.system.modules.movement.Sprint;
 import yeatware.system.modules.render.DeathEffect;
 import yeatware.system.modules.render.ForceSneak;
+import yeatware.system.modules.render.FullBright;
 import yeatware.system.modules.render.NoLimbInterp;
 
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ public class ModuleManager {
         add(new ForceSneak());
         add(new DeathEffect());
         add(new NoLimbInterp());
+        add(new FullBright());
         add(new Gui());
         modules.sort(Comparator.comparing(module -> module.getName().toLowerCase()));
     }

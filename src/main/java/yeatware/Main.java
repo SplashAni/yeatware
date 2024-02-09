@@ -34,6 +34,7 @@ public class Main implements ModInitializer {
         BUS.registerLambdaFactory("yeatware", (lookupInMethod, klass) -> (MethodHandles.Lookup) lookupInMethod.invoke(null, klass, MethodHandles.lookup()));
         BUS.subscribe(this);
 
+       // mc.gameRenderer.renderHand();
         LOGGER.info("splash x bennyx x yeat!");
     }
 
@@ -45,7 +46,6 @@ public class Main implements ModInitializer {
         if (event.getKey() == ModuleManager.get().getModule(Gui.class).getKey()
                 && !(mc.currentScreen instanceof GuiScreen))
             mc.setScreen(new GuiScreen(category == null ? Category.COMBAT : category, this));
-
 
         ModuleManager.get().getModules().stream().takeWhile(mod -> event.getKey() != 0).filter(mod -> mod.getKey() == event.getKey()).forEach(Module::toggle);
     }
