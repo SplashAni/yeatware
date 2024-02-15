@@ -7,14 +7,21 @@ public class KeyEvent extends Event {
     int action;
     int modifiers;
 
-    public KeyEvent(int key, int action, int modifiers) {
+    int scanCode;
+
+    public KeyEvent(int key, int action, int modifiers, int scanCode) {
         this.key = key;
         this.action = action;
         this.modifiers = modifiers;
+        this.scanCode = scanCode;
     }
 
     public int getKey() {
         return key;
+    }
+
+    public int getScanCode() {
+        return scanCode;
     }
 
     public int getAction() {

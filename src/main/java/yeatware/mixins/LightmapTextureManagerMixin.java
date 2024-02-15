@@ -13,6 +13,9 @@ import static yeatware.Main.mc;
 public class LightmapTextureManagerMixin {
     @Redirect(method = "update", at = @At(value = "INVOKE", target = "Ljava/lang/Double;floatValue()F"))
     public float update(Double instance) {
-        return ModuleManager.get().getModule(FullBright.class).isActive() ? 100f : mc.options.getGamma().getValue().floatValue();
+        FullBright fullBright = ModuleManager.get().getModule(FullBright.class);
+
+        if (!fullBright.isActive()) return mc.options.getGamma().getValue().floatValue();
+        return fullBright.multiplier.get() * 10;
     }
 }
