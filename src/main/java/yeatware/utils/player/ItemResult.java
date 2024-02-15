@@ -3,6 +3,7 @@ package yeatware.utils.player;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Hand;
 import yeatware.utils.constants.ItemType;
 
 import java.util.stream.IntStream;
@@ -11,6 +12,7 @@ import static yeatware.Main.mc;
 
 public class ItemResult {
     private Item item;
+    int prevSlot;
 
     public ItemResult(Item item) {
         this.item = item;
@@ -42,4 +44,15 @@ public class ItemResult {
         return false;
     }
 
+    public void swap() {
+        prevSlot = mc.player.getInventory().selectedSlot;
+        mc.player.getInventory().selectedSlot = slot();
+    }
+
+    public void swapBack() {
+        if (prevSlot != -1) mc.player.getInventory().selectedSlot = prevSlot;
+    }
+    public Hand getHand(){ // uh?
+        return Hand.MAIN_HAND;
+    }
 }

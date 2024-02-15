@@ -13,7 +13,7 @@ import yeatware.event.events.KeyEvent;
 import yeatware.system.Category;
 import yeatware.system.Module;
 import yeatware.system.ModuleManager;
-import yeatware.system.modules.client.Gui;
+import yeatware.system.modules.client.GuiModule;
 import yeatware.ui.containers.GuiScreen;
 import yeatware.utils.player.BetaUtils;
 
@@ -45,7 +45,7 @@ public class Main implements ModInitializer {
 
         if (event.getAction() != GLFW.GLFW_PRESS) return;
 
-        if (event.getKey() == ModuleManager.get().getModule(Gui.class).getKey()
+        if (event.getKey() == ModuleManager.get().getModule(GuiModule.class).getKey()
                 && !(mc.currentScreen instanceof GuiScreen))
             mc.setScreen(new GuiScreen(category == null ? Category.COMBAT : category, this));
 

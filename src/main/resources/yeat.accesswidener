@@ -1,0 +1,2 @@
+accessWidener   v1	named
+accessible method net/minecraft/client/render/GameRenderer renderHand (Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/Camera;F)V

@@ -64,9 +64,8 @@ java {
     targetCompatibility = JavaVersion.VERSION_17
 }
 loom {
-    accessWidenerPath = file("src/main/resources/modid.accesswidener")
+    accessWidenerPath = file("src/main/resources/yeat.accesswidener")
 }
-
 jar {
     from("LICENSE") {
         rename { "${it}_${project.base.archivesName.get()}" }

@@ -1,6 +1,7 @@
 package yeatware.system;
 
-import yeatware.system.modules.client.Gui;
+import yeatware.system.modules.client.GuiModule;
+import yeatware.system.modules.combat.Feetrap;
 import yeatware.system.modules.movement.Fly;
 import yeatware.system.modules.movement.Sprint;
 import yeatware.system.modules.render.DeathEffect;
@@ -29,12 +30,13 @@ public class ModuleManager {
 
     public void init() {
         add(new Sprint());
+        add(new Feetrap());
         add(new Fly());
         add(new ForceSneak());
         add(new DeathEffect());
         add(new NoLimbInterp());
         add(new FullBright());
-        add(new Gui());
+        add(new GuiModule());
         modules.sort(Comparator.comparing(module -> module.getName().toLowerCase()));
     }
 
