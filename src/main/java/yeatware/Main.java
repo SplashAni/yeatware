@@ -15,7 +15,7 @@ import yeatware.system.Module;
 import yeatware.system.ModuleManager;
 import yeatware.system.modules.client.Gui;
 import yeatware.ui.containers.GuiScreen;
-import yeatware.utils.BetaUtils;
+import yeatware.utils.player.BetaUtils;
 
 import java.lang.invoke.MethodHandles;
 

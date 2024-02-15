@@ -1,7 +1,7 @@
 package yeatware.system;
 
 import net.minecraft.client.MinecraftClient;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.client.util.math.MatrixStack;
 import yeatware.Main;
 import yeatware.ui.settings.KeybindSetting;
 import yeatware.ui.settings.Setting;
@@ -90,7 +90,9 @@ public abstract class Module {
     public void onTick() {
 
     }
+    public void onRender(MatrixStack matrcies){
 
+    }
     public void onActivate() {
         Main.BUS.subscribe(this);
     }

@@ -6,6 +6,7 @@
     "ClientConnectionMixin",
     "EntityMixin",
     "GameRendererMixin",
+    "IPlayerMoveC2SPacket",
     "LivingEntityMixin",
     "MinecraftClientMixin"
   ],
