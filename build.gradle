@@ -63,15 +63,15 @@ java {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
 }
-loom {
-    accessWidenerPath = file("src/main/resources/yeat.accesswidener")
-}
+
 jar {
     from("LICENSE") {
         rename { "${it}_${project.base.archivesName.get()}" }
     }
 }
-
+loom {
+    accessWidenerPath = file("src/main/resources/modid.accesswidener")
+}
 publishing {
     publications {
         mavenJava(MavenPublication) {

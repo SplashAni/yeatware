@@ -19,6 +19,6 @@ public class PlayerUtils {
     }
 
     public static boolean preSwing() {
-        return false;
+        return ModuleManager.get().getModule(InteractionModule.class).swing.get() == TimeMode.Pre;
     }
 }

@@ -1,17 +1,17 @@
 package yeatware.system;
 
 import yeatware.system.modules.client.GuiModule;
+import yeatware.system.modules.client.InteractionModule;
 import yeatware.system.modules.combat.Feetrap;
 import yeatware.system.modules.movement.Fly;
 import yeatware.system.modules.movement.Sprint;
-import yeatware.system.modules.render.DeathEffect;
-import yeatware.system.modules.render.ForceSneak;
-import yeatware.system.modules.render.FullBright;
-import yeatware.system.modules.render.NoLimbInterp;
+import yeatware.system.modules.render.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
+import static yeatware.Main.LOGGER;
 
 public class ModuleManager {
     private static ModuleManager instance;
@@ -34,13 +34,17 @@ public class ModuleManager {
         add(new Fly());
         add(new ForceSneak());
         add(new DeathEffect());
+        add(new InteractionModule());
         add(new NoLimbInterp());
         add(new FullBright());
         add(new GuiModule());
+        add(new Chams());
+
         modules.sort(Comparator.comparing(module -> module.getName().toLowerCase()));
     }
 
     public void add(Module module) {
+        LOGGER.info("Added ".concat(module.name).concat(" to yeatware"));
         modules.add(module);
     }
 
@@ -52,14 +56,15 @@ public class ModuleManager {
         return modules.stream().filter(module -> module.isActive).toList();
     }
 
-    public Module getModule(Class<? extends Module> mod) {
+    public <T extends Module> T getModule(Class<T> mod) {
         for (Module module : modules) {
             if (module.getClass() == mod) {
-                return module;
+                return mod.cast(module);
             }
         }
         return null;
     }
+
 
     public List<Module> getCategoryModules(Category category) {
         return modules.stream().filter(module -> module.getCategory() == category).toList();

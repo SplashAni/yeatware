@@ -36,8 +36,9 @@ public class Main implements ModInitializer {
         BUS.registerLambdaFactory("yeatware", (lookupInMethod, klass) -> (MethodHandles.Lookup) lookupInMethod.invoke(null, klass, MethodHandles.lookup()));
         BUS.subscribe(this);
 
-        // mc.gameRenderer.renderHand();
         LOGGER.info("splash x bennyx x yeat!");
+
+
     }
 
     @EventHandler

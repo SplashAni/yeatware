@@ -47,12 +47,14 @@ public class ItemResult {
     public void swap() {
         prevSlot = mc.player.getInventory().selectedSlot;
         mc.player.getInventory().selectedSlot = slot();
+        mc.interactionManager.syncSelectedSlot(); // imagine using interfaces for this ☠
     }
 
     public void swapBack() {
         if (prevSlot != -1) mc.player.getInventory().selectedSlot = prevSlot;
     }
-    public Hand getHand(){ // uh?
+
+    public Hand getHand() { // uh?
         return Hand.MAIN_HAND;
     }
 }

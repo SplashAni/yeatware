@@ -31,5 +31,5 @@
   "suggests": {
     "another-mod": "*"
   },
-  "accessWidener": "yeat.accesswidener"
+  "accessWidener" : "modid.accesswidener"
 }

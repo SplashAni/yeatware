@@ -10,8 +10,12 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import yeatware.system.ModuleManager;
+import yeatware.system.modules.render.Chams;
 
 import java.awt.*;
+
+import static yeatware.Main.mc;
 
 @Mixin(GameRenderer.class)
 public abstract class GameRendererMixin {
@@ -21,10 +25,13 @@ public abstract class GameRendererMixin {
     private boolean shouldRender = true;
 
     @Shadow
-    public abstract void renderHand(MatrixStack matrices, Camera camera, float tickDelta);
+    protected abstract void renderHand(MatrixStack matrices, Camera camera, float tickDelta);
 
     @Inject(method = "renderHand", at = @At("TAIL"))
     public void render(MatrixStack matrices, Camera camera, float tickDelta, CallbackInfo ci) {
+
+        Chams chams = ModuleManager.get().getModule(Chams.class);
+        if (!chams.isActive() || chams.hands.get() || mc.gameRenderer.getCamera().isThirdPerson()) return;
 
         if (shouldRender) {
             shouldRender = false;
