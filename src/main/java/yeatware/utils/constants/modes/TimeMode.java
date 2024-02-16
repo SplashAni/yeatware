@@ -1,4 +1,4 @@
-package yeatware.utils.constants;
+package yeatware.utils.constants.modes;
 
 public enum TimeMode {
     Post,

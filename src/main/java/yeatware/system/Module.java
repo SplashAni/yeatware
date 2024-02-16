@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Module {
-    public static MinecraftClient mc = Main.mc;
+    public MinecraftClient mc = Main.mc;
     List<Setting> settings = new ArrayList<>();
     String name;
     String desc;
@@ -90,9 +90,11 @@ public abstract class Module {
     public void onTick() {
 
     }
-    public void onRender(MatrixStack matrcies,float tickDelta){
+
+    public void onRender(MatrixStack matrcies, float tickDelta) {
 
     }
+
     public void onActivate() {
         Main.BUS.subscribe(this);
     }

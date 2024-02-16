@@ -1,4 +1,4 @@
-package yeatware.utils.constants;
+package yeatware.utils.constants.modes;
 
 import net.minecraft.network.packet.c2s.play.HandSwingC2SPacket;
 import net.minecraft.util.Hand;

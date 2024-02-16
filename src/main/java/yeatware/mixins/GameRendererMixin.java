@@ -39,11 +39,11 @@ public abstract class GameRendererMixin {
     public void render(MatrixStack matrices, Camera camera, float tickDelta, CallbackInfo ci) {
 
         Chams chams = ModuleManager.get().getModule(Chams.class);
-        if (!chams.isActive() || chams.hands.get() || mc.gameRenderer.getCamera().isThirdPerson()) return;
+        if (!chams.isActive() || chams.hands.get()) return;
 
         if (shouldRender) {
             shouldRender = false;
-            OutlineFramebuffer.useAndDraw(() -> renderHand(matrices, camera, tickDelta), 2, Color.BLUE, new Color(68, 160, 252, 103));
+          //  OutlineFramebuffer.useAndDraw(() -> renderHand(matrices, camera, tickDelta), 2, Color.BLUE, new Color(68, 160, 252, 103));
             shouldRender = true;
         }
     }

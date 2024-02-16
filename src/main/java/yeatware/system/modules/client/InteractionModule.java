@@ -3,7 +3,7 @@ package yeatware.system.modules.client;
 import yeatware.system.Category;
 import yeatware.system.Module;
 import yeatware.ui.settings.ModeSetting;
-import yeatware.utils.constants.TimeMode;
+import yeatware.utils.constants.modes.TimeMode;
 
 public class InteractionModule extends Module { // good idea BO2 (':
     public ModeSetting<TimeMode> swing = new ModeSetting<>("Swing", TimeMode.Post);

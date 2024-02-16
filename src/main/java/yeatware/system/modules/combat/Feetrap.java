@@ -7,7 +7,6 @@ import net.minecraft.item.Items;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import yeatware.event.events.KeyEvent;
 import yeatware.system.Category;
@@ -15,8 +14,8 @@ import yeatware.system.Module;
 import yeatware.ui.settings.BooleanSetting;
 import yeatware.ui.settings.ModeSetting;
 import yeatware.ui.settings.NumberSetting;
-import yeatware.utils.constants.RotationMode;
-import yeatware.utils.constants.SwingMode;
+import yeatware.utils.constants.modes.RotationMode;
+import yeatware.utils.constants.modes.SwingMode;
 import yeatware.utils.player.ItemResult;
 import yeatware.utils.world.BlockUtils;
 
@@ -27,12 +26,13 @@ import java.util.List;
 public class Feetrap extends Module {
     NumberSetting delay = new NumberSetting("Delay", 4, 0, 30);
     ModeSetting<SwingMode> swingMode = new ModeSetting<>("Swing Mode", SwingMode.Client);
+    ModeSetting<RotationMode> rotationMode = new ModeSetting<>("RotationMode", RotationMode.None);
     BooleanSetting center = new BooleanSetting("Center", true);
     BooleanSetting jumpToggle = new BooleanSetting("Jump Toggle", false);
 
     public Feetrap() {
         super("Feetrap", Category.COMBAT);
-        addSettings(delay, center, swingMode, jumpToggle);
+        addSettings(delay, center, swingMode, rotationMode, jumpToggle);
     }
 
     List<BlockPos> poses = new ArrayList<>();
@@ -75,10 +75,7 @@ public class Feetrap extends Module {
 
         BlockPos pos = poses.get(0);
 
-        mc.player.setYaw(getRotations(pos.toCenterPos())[0]);
-        mc.player.setPitch(getRotations(pos.toCenterPos())[1]);
-
-        if (BlockUtils.place(pos, item, swingMode.get(), RotationMode.Packet)) {
+        if (BlockUtils.place(pos, item, swingMode.get(), rotationMode.get())) {
             poses.remove(pos);
         }
         ticks = delay.get();
@@ -86,29 +83,11 @@ public class Feetrap extends Module {
         super.onTick();
     }
 
-    public int[] getRotations(Vec3d vec) {
-        double x = vec.getX() - mc.player.getX();
-        double y = vec.getY() - mc.player.getY();
-        double z = vec.getZ() - mc.player.getZ();
-
-        double yaw;
-        double pitch;
-
-        if ((x != 0) || (z != 0)) {
-            yaw = MathHelper.wrapDegrees(Math.toDegrees(Math.atan2(-x, z)));
-            pitch = MathHelper.wrapDegrees(Math.toDegrees(Math.atan2(y, Math.sqrt(x * x + z * z))));
-        } else {
-            yaw = 0;
-            pitch = y > 0 ? -90 : 90;
-        }
-
-        return new int[]{(int) yaw, (int) pitch};
-    }
 
     public void calculate() {
         poses.clear();
         for (Direction direction : Direction.values()) {
-            if (direction == Direction.DOWN || direction == Direction.UP) continue;
+            if (direction == Direction.UP) continue;
             BlockPos offset = mc.player.getBlockPos().offset(direction);
 
             if (!BlockUtils.canPlace(offset)) continue;

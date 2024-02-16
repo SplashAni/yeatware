@@ -8,8 +8,8 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
-import yeatware.utils.constants.RotationMode;
-import yeatware.utils.constants.SwingMode;
+import yeatware.utils.constants.modes.RotationMode;
+import yeatware.utils.constants.modes.SwingMode;
 import yeatware.utils.player.ItemResult;
 import yeatware.utils.player.PlayerUtils;
 

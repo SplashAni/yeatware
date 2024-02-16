@@ -2,6 +2,8 @@ package yeatware.system;
 
 import yeatware.system.modules.client.GuiModule;
 import yeatware.system.modules.client.InteractionModule;
+import yeatware.system.modules.client.world.FakePlayer;
+import yeatware.system.modules.client.world.FastUse;
 import yeatware.system.modules.combat.Feetrap;
 import yeatware.system.modules.movement.Fly;
 import yeatware.system.modules.movement.Sprint;
@@ -36,9 +38,12 @@ public class ModuleManager {
         add(new DeathEffect());
         add(new InteractionModule());
         add(new NoLimbInterp());
+        add(new FakePlayer());
         add(new FullBright());
         add(new GuiModule());
         add(new Chams());
+        add(new FakePlayer());
+        add(new FastUse());
 
         modules.sort(Comparator.comparing(module -> module.getName().toLowerCase()));
     }

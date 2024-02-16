@@ -1,4 +1,4 @@
-package yeatware.utils.player;
+package yeatware.utils.other;
 
 import java.io.BufferedReader;
 import java.io.IOException;
