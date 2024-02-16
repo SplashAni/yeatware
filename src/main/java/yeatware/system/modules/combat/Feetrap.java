@@ -6,7 +6,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.Items;
 import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import yeatware.event.events.KeyEvent;
 import yeatware.system.Category;
@@ -21,7 +21,9 @@ import yeatware.utils.world.BlockUtils;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Feetrap extends Module {
     NumberSetting delay = new NumberSetting("Delay", 4, 0, 30);
@@ -86,13 +88,26 @@ public class Feetrap extends Module {
 
     public void calculate() {
         poses.clear();
-        for (Direction direction : Direction.values()) {
-            if (direction == Direction.UP) continue;
-            BlockPos offset = mc.player.getBlockPos().offset(direction);
+        poses.addAll(getBlocks());
 
-            if (!BlockUtils.canPlace(offset)) continue;
-            poses.add(offset);
-        }
+    }
+
+
+    public static List<BlockPos> getBlocks() {
+        Set<BlockPos> blockPosSet = new HashSet<>();
+
+
+        BlockPos playerPos = mc.player.getBlockPos();
+        Box box = mc.player.getBoundingBox().expand(1.0);
+
+        for (int x = (int) Math.floor(box.minX); x < Math.ceil(box.maxX); x++)
+            for (int y = (int) Math.floor(box.minY); y < Math.ceil(box.maxY); y++)
+                for (int z = (int) Math.floor(box.minZ); z < Math.ceil(box.maxZ); z++) {
+                    BlockPos pos = new BlockPos(x, y, z);
+                    if (pos.getY() <= playerPos.getY() && BlockUtils.canPlace(pos)) blockPosSet.add(pos);
+                }
+
+        return new ArrayList<>(blockPosSet);
     }
 
     @Override

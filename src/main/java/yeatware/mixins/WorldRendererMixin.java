@@ -28,7 +28,7 @@ public abstract class WorldRendererMixin {
 
         if (shouldRender) {
             shouldRender = false;
-            OutlineFramebuffer.useAndDraw(() -> renderEntity(entity, cameraX, cameraY, cameraZ, tickDelta, matrices, vertexConsumers), 1, Color.BLUE, new Color(68, 160, 252, 103));
+            //OutlineFramebuffer.useAndDraw(() -> renderEntity(entity, cameraX, cameraY, cameraZ, tickDelta, matrices, vertexConsumers), 1, Color.BLUE, new Color(68, 160, 252, 103));
             shouldRender = true;
         }
     }

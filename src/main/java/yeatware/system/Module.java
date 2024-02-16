@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Module {
-    public MinecraftClient mc = Main.mc;
+    public static MinecraftClient mc = Main.mc;
     List<Setting> settings = new ArrayList<>();
     String name;
     String desc;

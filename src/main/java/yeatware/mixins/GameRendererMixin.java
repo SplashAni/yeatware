@@ -43,7 +43,7 @@ public abstract class GameRendererMixin {
 
         if (shouldRender) {
             shouldRender = false;
-          //  OutlineFramebuffer.useAndDraw(() -> renderHand(matrices, camera, tickDelta), 2, Color.BLUE, new Color(68, 160, 252, 103));
+             OutlineFramebuffer.useAndDraw(() -> renderHand(matrices, camera, tickDelta), 2, Color.BLUE, new Color(68, 160, 252, 103));
             shouldRender = true;
         }
     }
