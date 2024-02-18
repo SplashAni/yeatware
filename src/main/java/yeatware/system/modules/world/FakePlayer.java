@@ -1,4 +1,4 @@
-package yeatware.system.modules.client.world;
+package yeatware.system.modules.world;
 
 import com.mojang.authlib.GameProfile;
 import net.minecraft.client.network.OtherClientPlayerEntity;

@@ -11,7 +11,7 @@ import yeatware.Main;
 import yeatware.event.events.TickEvent;
 import yeatware.system.Module;
 import yeatware.system.ModuleManager;
-import yeatware.system.modules.client.world.FastUse;
+import yeatware.system.modules.world.FastUse;
 
 import static yeatware.Main.mc;
 

@@ -89,7 +89,6 @@ public class Feetrap extends Module {
     public void calculate() {
         poses.clear();
         poses.addAll(getBlocks());
-
     }
 
 

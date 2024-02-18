@@ -8,7 +8,8 @@
     "GameRendererMixin",
     "IPlayerMoveC2SPacket",
     "LivingEntityMixin",
-    "MinecraftClientMixin"
+    "MinecraftClientMixin",
+    "Vec3dMixin"
   ],
   "injectors": {
     "defaultRequire": 1

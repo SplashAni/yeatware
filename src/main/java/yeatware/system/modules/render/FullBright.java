@@ -9,5 +9,6 @@ public class FullBright extends Module {
 
     public FullBright() {
         super("Fullbright", Category.RENDER);
+        addSettings(multiplier);
     }
 }

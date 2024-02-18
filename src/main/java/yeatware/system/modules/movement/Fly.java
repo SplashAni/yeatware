@@ -13,6 +13,7 @@ public class Fly extends Module {
 
         if (!mc.player.isSpectator() || !mc.player.isCreative()) {
             mc.player.getAbilities().allowFlying = true;
+            mc.player.getAbilities().flying = true;
         }
 
         super.onActivate();
@@ -26,6 +27,7 @@ public class Fly extends Module {
     @Override
     public void onDeactivate() {
         mc.player.getAbilities().allowFlying = false;
+        if (mc.player.getAbilities().flying) mc.player.getAbilities().flying = false;
         super.onDeactivate();
     }
 

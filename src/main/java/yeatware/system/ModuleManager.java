@@ -2,11 +2,15 @@ package yeatware.system;
 
 import yeatware.system.modules.client.GuiModule;
 import yeatware.system.modules.client.InteractionModule;
-import yeatware.system.modules.client.world.FakePlayer;
-import yeatware.system.modules.client.world.FastUse;
+import yeatware.system.modules.world.FakePlayer;
+import yeatware.system.modules.world.FastUse;
+import yeatware.system.modules.combat.Criticals;
 import yeatware.system.modules.combat.Feetrap;
 import yeatware.system.modules.movement.Fly;
+import yeatware.system.modules.movement.LongJump;
 import yeatware.system.modules.movement.Sprint;
+import yeatware.system.modules.movement.Velocity;
+import yeatware.system.modules.player.Scaffold;
 import yeatware.system.modules.render.*;
 
 import java.util.ArrayList;
@@ -35,6 +39,9 @@ public class ModuleManager {
         add(new Feetrap());
         add(new Fly());
         add(new ForceSneak());
+        add(new Criticals());
+        add(new LongJump());
+        add(new Scaffold());
         add(new DeathEffect());
         add(new InteractionModule());
         add(new NoLimbInterp());
@@ -44,6 +51,7 @@ public class ModuleManager {
         add(new Chams());
         add(new FakePlayer());
         add(new FastUse());
+        add(new Velocity());
 
         modules.sort(Comparator.comparing(module -> module.getName().toLowerCase()));
     }

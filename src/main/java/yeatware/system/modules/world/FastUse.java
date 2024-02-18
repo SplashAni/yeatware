@@ -1,9 +1,7 @@
-package yeatware.system.modules.client.world;
+package yeatware.system.modules.world;
 
-import net.minecraft.item.BlockItem;
 import yeatware.system.Category;
 import yeatware.system.Module;
-import yeatware.ui.settings.BooleanSetting;
 import yeatware.ui.settings.NumberSetting;
 
 public class FastUse extends Module {
